@@ -16,7 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="GWJ29"
+run/main_scene="res://debug.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/stretch/mode="viewport"
 
 [rendering]
 
