@@ -1,30 +1,36 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://debug_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Table.gd" type="Script" id=2]
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://Piece.gd" type="Script" id=4]
+[ext_resource path="res://table.png" type="Texture" id=5]
+[ext_resource path="res://mockup.png" type="Texture" id=6]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 50, 50 )
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 7.1174, 5.9884 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 64.5486, 32.7492 )
 
 [node name="Game" type="Node"]
 
+[node name="table" type="Sprite" parent="."]
+scale = Vector2( 12, 12 )
+texture = ExtResource( 5 )
+centered = false
+
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2( -30.3065, -30.3065 )
+position = Vector2( 60, 48 )
+scale = Vector2( 12, 12 )
 tile_set = ExtResource( 1 )
+cell_size = Vector2( 9, 9 )
 cell_quadrant_size = 1
 format = 1
-tile_data = PoolIntArray( -131075, 0, 0, -131074, 0, 0, -131073, 0, 0, -196608, 0, 0, -196607, 0, 0, -196606, 0, 0, -196605, 0, 0, -65539, 0, 0, -131069, 0, 0, -3, 0, 0, -65533, 0, 0, 65533, 0, 0, 3, 0, 0, 131069, 0, 0, 65539, 0, 0, 196605, 0, 0, 131075, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0 )
 script = ExtResource( 2 )
 
-[node name="YSort" type="YSort" parent="TileMap"]
-
-[node name="Piece" type="Area2D" parent="TileMap/YSort"]
-position = Vector2( 286.133, -166.952 )
+[node name="Piece" type="Area2D" parent="TileMap"]
+position = Vector2( 60.3176, 4.89262 )
 monitoring = false
 monitorable = false
 script = ExtResource( 4 )
@@ -33,31 +39,34 @@ __meta__ = {
 }
 relative_spaces = [ Vector2( 1, 0 ), Vector2( 0, 1 ), Vector2( 1, 1 ) ]
 
-[node name="Sprite" type="Sprite" parent="TileMap/YSort/Piece"]
-scale = Vector2( 1.5, 1.5 )
-texture = ExtResource( 3 )
-centered = false
+[node name="Sprite" type="Sprite" parent="TileMap/Piece"]
+position = Vector2( 3.32437, 2.71568 )
+texture = ExtResource( 6 )
+region_enabled = true
+region_rect = Rect2( 17, 1, 14, 12 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/YSort/Piece"]
-position = Vector2( 47.1716, 47.8787 )
-shape = SubResource( 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/Piece"]
+visible = false
+position = Vector2( 3.18391, 2.71568 )
+shape = SubResource( 3 )
 
-[node name="Piece2" type="Area2D" parent="TileMap/YSort"]
-position = Vector2( 365.543, -29.0265 )
+[node name="Piece2" type="Area2D" parent="TileMap"]
+position = Vector2( 61.7646, 19.5196 )
+scale = Vector2( 0.125, 0.075 )
 monitoring = false
 monitorable = false
 script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
 relative_spaces = [ Vector2( 1, 0 ) ]
 
-[node name="Sprite" type="Sprite" parent="TileMap/YSort/Piece2"]
+[node name="Sprite" type="Sprite" parent="TileMap/Piece2"]
+position = Vector2( -32.0917, -30.6759 )
 scale = Vector2( 2, 1 )
 texture = ExtResource( 3 )
 centered = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/YSort/Piece2"]
-position = Vector2( 63.8571, 31.8606 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/Piece2"]
+position = Vector2( 32.2373, 1.65662 )
 shape = SubResource( 2 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 93.1643, 0 )
-current = true

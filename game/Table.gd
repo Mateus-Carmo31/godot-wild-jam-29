@@ -5,7 +5,7 @@ const TABLE_SIZE = Vector2(5,5)
 var current_piece : Piece
 
 func _ready():
-	for child in get_child(0).get_children():
+	for child in get_children():
 		if child is Piece:
 			child.connect("selected", self, "select_piece", [child])
 #			child.connect("deselected", self, "deselect_piece")
@@ -29,7 +29,7 @@ func select_piece(piece):
 	current_piece.is_placed = false
 
 func update_piece_pos(pos):
-	current_piece.position += pos
+	current_piece.position += pos/scale # Adjust for scaling by 12
 
 # Attempts to place a piece at a position.
 # TODO: check if space is occupied as well
@@ -37,11 +37,11 @@ func try_place_piece():
 	
 	var piece_pos = world_to_map(current_piece.position.round())
 	
-	if not is_in_board(piece_pos):
+	if not is_in_board(piece_pos) or get_cellv(piece_pos) == 1:
 		return false
 	
 	for offset in get_piece_space():
-		if not is_in_board(piece_pos + offset):
+		if not is_in_board(piece_pos + offset) or get_cellv(piece_pos) == 1:
 			return false
 	
 	return true
@@ -59,12 +59,13 @@ func deselect_piece():
 		
 		current_piece = null
 		update_table()
+		check_completion()
 
 func update_table():
 	
 	var occupied_slots = []
 	
-	for piece in get_child(0).get_children():
+	for piece in get_children():
 		if piece.is_placed:
 			var pos = world_to_map(piece.position.round())
 			occupied_slots.append(pos)
@@ -95,6 +96,15 @@ func update_table():
 
 func get_piece_space():
 	return current_piece.relative_spaces
+
+func check_completion():
+	
+	var complete = true
+	for piece in get_children():
+		complete = false if not piece.is_placed else complete
+	
+	if complete:
+		print("GAME ENDED!")
 
 func is_in_board(pos):
 	var is_inside_x = pos.x >= -TABLE_SIZE.x/2 && pos.x < TABLE_SIZE.x/2
