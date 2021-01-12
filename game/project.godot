@@ -26,8 +26,8 @@ config/icon="res://icon.png"
 
 [display]
 
-window/size/width=1032
-window/size/height=648
+window/size/width=1248
+window/size/height=736
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
