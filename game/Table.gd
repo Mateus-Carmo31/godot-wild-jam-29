@@ -7,10 +7,17 @@ var rot_mat := Transform2D(Vector2(0, -1), Vector2(1, 0), Vector2.ZERO)
 
 var current_piece : Piece
 
+signal table_updated(level_completed)
+
 func _ready():
 	for child in get_children():
 		if child is Piece:
 			child.connect("selected", self, "select_piece", [child])
+			
+			if child.starts_placed_at != Vector2(-1,-1):
+				child.position = map_to_world(child.starts_placed_at) + cell_size/2 + Vector2(0.5, 0.5)
+	
+	update_table()
 
 func _input(event):
 	
@@ -32,6 +39,7 @@ func _input(event):
 func select_piece(piece):
 	current_piece = piece
 	current_piece.placed = false
+	emit_signal("table_updated", false) # The level can't be completed if a piece is being held
 
 func update_piece_pos(pos):
 	current_piece.position += pos/scale # Adjust for scaling by 12
@@ -48,11 +56,11 @@ func rotate_piece(mouse_pos):
 		for i in range(current_piece.relative_spaces.size()):
 			get_piece_space()[i] = rot_mat.xform(get_piece_space()[i])
 		
-		print(current_piece.relative_spaces)
+#		print(current_piece.relative_spaces)
 		update_table()
 
 # Attempts to place a piece at a position.
-func try_place_piece():
+func can_place_piece():
 	
 	var piece_pos = world_to_map(current_piece.position.round())
 	
@@ -70,15 +78,17 @@ func deselect_piece():
 		
 		var map_pos = world_to_map(current_piece.position.round())
 		
-		if(try_place_piece() == true):
+		if(can_place_piece() == true):
 			current_piece.placed = true
 		else:
 			current_piece.position = current_piece.original_position
+			current_piece.relative_spaces = current_piece.original_relatives.duplicate()
+			current_piece.rotation = 0
 			current_piece.placed = false
 		
 		current_piece = null
 		update_table()
-		check_completion()
+		emit_signal("table_updated", check_completion())
 
 func update_table():
 	
@@ -124,8 +134,7 @@ func check_completion():
 			required_pieces_placed = false
 			break
 	
-	if required_pieces_placed == true:
-		print("GAME ENDED")
+	return required_pieces_placed
 
 func is_in_board(pos):
 	var is_inside_x = pos.x >= 0 && pos.x < TABLE_SIZE.x
