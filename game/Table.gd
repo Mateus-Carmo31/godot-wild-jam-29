@@ -31,7 +31,7 @@ func _input(event):
 
 func select_piece(piece):
 	current_piece = piece
-	current_piece.is_placed = false
+	current_piece.placed = false
 
 func update_piece_pos(pos):
 	current_piece.position += pos/scale # Adjust for scaling by 12
@@ -52,7 +52,6 @@ func rotate_piece(mouse_pos):
 		update_table()
 
 # Attempts to place a piece at a position.
-# TODO: check if space is occupied as well
 func try_place_piece():
 	
 	var piece_pos = world_to_map(current_piece.position.round())
@@ -72,10 +71,10 @@ func deselect_piece():
 		var map_pos = world_to_map(current_piece.position.round())
 		
 		if(try_place_piece() == true):
-			current_piece.is_placed = true
+			current_piece.placed = true
 		else:
 			current_piece.position = current_piece.original_position
-			current_piece.is_placed = false
+			current_piece.placed = false
 		
 		current_piece = null
 		update_table()
@@ -86,7 +85,7 @@ func update_table():
 	var occupied_slots = []
 	
 	for piece in get_children():
-		if piece.is_placed:
+		if piece.placed:
 			var pos = world_to_map(piece.position.round())
 			occupied_slots.append(pos)
 			for offset in piece.relative_spaces:
@@ -119,12 +118,14 @@ func get_piece_space():
 
 func check_completion():
 	
-	var complete = true
-	for piece in get_children():
-		complete = false if not piece.is_placed else complete
+	var required_pieces_placed = true
+	for child in get_children():
+		if child.victory_requirement == true and child.placed == false:
+			required_pieces_placed = false
+			break
 	
-	if complete:
-		print("GAME ENDED!")
+	if required_pieces_placed == true:
+		print("GAME ENDED")
 
 func is_in_board(pos):
 	var is_inside_x = pos.x >= 0 && pos.x < TABLE_SIZE.x
