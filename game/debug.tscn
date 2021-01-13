@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://overlay.png" type="Texture" id=1]
 [ext_resource path="res://Table.gd" type="Script" id=2]
@@ -6,8 +6,12 @@
 [ext_resource path="res://Piece.gd" type="Script" id=4]
 [ext_resource path="res://mockup2.png" type="Texture" id=5]
 [ext_resource path="res://mockup.png" type="Texture" id=6]
+[ext_resource path="res://Level.gd" type="Script" id=7]
 
-[sub_resource type="TileSet" id=4]
+[sub_resource type="StyleBoxFlat" id=4]
+border_width_left = 1
+
+[sub_resource type="TileSet" id=1]
 0/name = "occupied"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
@@ -65,13 +69,36 @@
 3/shapes = [  ]
 3/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 7.1174, 5.9884 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 64.5486, 32.7492 )
 
-[node name="Game" type="Node"]
+[node name="Level" type="Node"]
+script = ExtResource( 7 )
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="UI/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 949.0
+margin_top = 82.0
+margin_right = -129.0
+margin_bottom = -566.0
+custom_styles/normal = SubResource( 4 )
+text = "PACK!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Table" type="Sprite" parent="."]
 scale = Vector2( 8, 8 )
@@ -81,7 +108,7 @@ centered = false
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 440, 336 )
 scale = Vector2( 8, 8 )
-tile_set = SubResource( 4 )
+tile_set = SubResource( 1 )
 cell_size = Vector2( 9, 9 )
 cell_quadrant_size = 1
 format = 1
@@ -99,6 +126,7 @@ __meta__ = {
 "_edit_group_": true
 }
 relative_spaces = [ Vector2( 1, 0 ), Vector2( 0, 1 ), Vector2( 1, 1 ) ]
+victory_requirement = true
 
 [node name="Sprite" type="Sprite" parent="TileMap/Piece"]
 position = Vector2( 3.32437, 2.71568 )
@@ -109,7 +137,7 @@ region_rect = Rect2( 17, 1, 14, 12 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/Piece"]
 visible = false
 position = Vector2( 3.18391, 2.71568 )
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Piece2" type="Area2D" parent="TileMap"]
 position = Vector2( 61.7646, 19.5196 )
@@ -130,4 +158,4 @@ centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/Piece2"]
 position = Vector2( 32.2373, 1.65662 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
