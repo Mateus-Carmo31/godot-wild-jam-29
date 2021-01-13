@@ -91,7 +91,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="UI/Control"]
+[node name="PackButton" type="Button" parent="UI/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 949.0
@@ -256,4 +256,5 @@ region_rect = Rect2( 1, 36, 35, 17 )
 visible = false
 position = Vector2( -0.466232, 9.60139 )
 polygon = PoolVector2Array( 12.4051, -21.0413, 12.3426, -6.85378, -19.9074, -6.85378, -19.9074, -12.6663, -5.28238, -12.6663, -1.84488, -20.9788 )
+[connection signal="pressed" from="UI/Control/PackButton" to="." method="_on_PackButton_pressed"]
 [connection signal="table_updated" from="Table" to="." method="_on_Table_table_updated"]
