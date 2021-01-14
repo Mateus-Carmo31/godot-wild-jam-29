@@ -22,6 +22,12 @@ func _on_PackButton_pressed():
 	GameDataHandler.complete_level(level_id, table.currently_placed_pieces)
 	get_tree().change_scene("res://src/Scenes/level_select.tscn") # Is this safe? no. Does it work? yes
 
+func _on_Resume_pressed():
+	pause_menu.visible = false
+
 func restart_level():
 	get_tree().change_scene(LevelScenes.get_level_by_id(level_id))
 	print("Restarted level.")
+
+func _on_Level_Select_pressed():
+	get_tree().change_scene("res://src/Scenes/level_select.tscn")

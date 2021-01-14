@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/Scripts/LevelButton.gd" type="Script" id=1]
+[ext_resource path="res://assets/Sprites/level_markers.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 10, 7 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 8, 10, 7 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 16, 10, 7 )
+
+[node name="level0" type="TextureButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1201.5
+margin_bottom = -703.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = SubResource( 1 )
+texture_pressed = SubResource( 2 )
+texture_hover = SubResource( 2 )
+texture_disabled = SubResource( 3 )
+expand = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="PanelContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -31.0
+margin_top = -71.9909
+margin_right = 30.5
+margin_bottom = -43.9909
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 101.0
+margin_bottom = 54.0
+
+[node name="LevelName" type="Label" parent="Panel/VBoxContainer"]
+margin_right = 94.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 20 )
+text = "Level 1"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="Panel/VBoxContainer"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 24.0
+margin_right = 94.0
+margin_bottom = 29.0
+custom_constants/separation = 5
+
+[node name="ItemsGot" type="Label" parent="Panel/VBoxContainer"]
+margin_top = 33.0
+margin_right = 94.0
+margin_bottom = 47.0
+text = "Pieces: x/x"
+align = 1
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

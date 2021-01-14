@@ -93,6 +93,7 @@ __meta__ = {
 }
 
 [node name="PackButton" type="Button" parent="UI/Control"]
+pause_mode = 1
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 949.0
@@ -120,7 +121,7 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="UI/Control/PauseMenu"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.329412, 0.329412, 0.329412, 0.501961 )
+color = Color( 0.243137, 0.243137, 0.243137, 0.388235 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -323,5 +324,7 @@ visible = false
 position = Vector2( -0.466232, 9.60139 )
 polygon = PoolVector2Array( 12.4051, -21.0413, 12.3426, -6.85378, -19.9074, -6.85378, -19.9074, -12.6663, -5.28238, -12.6663, -1.84488, -20.9788 )
 [connection signal="pressed" from="UI/Control/PackButton" to="." method="_on_PackButton_pressed"]
+[connection signal="pressed" from="UI/Control/PauseMenu/Resume" to="." method="_on_Resume_pressed"]
 [connection signal="pressed" from="UI/Control/PauseMenu/Restart" to="." method="restart_level"]
+[connection signal="pressed" from="UI/Control/PauseMenu/Level Select" to="." method="_on_Level_Select_pressed"]
 [connection signal="table_updated" from="Table" to="." method="_on_Table_table_updated"]
