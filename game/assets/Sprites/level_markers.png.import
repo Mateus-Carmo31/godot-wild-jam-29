@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/level_markers.png-be0b4b5b7022d48fecff8ba01a1a0e51.stex"
+path="res://.import/level_markers.png-e7d5bf2d0fa064cf7b02528915278ad4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level_markers.png"
-dest_files=[ "res://.import/level_markers.png-be0b4b5b7022d48fecff8ba01a1a0e51.stex" ]
+source_file="res://assets/Sprites/level_markers.png"
+dest_files=[ "res://.import/level_markers.png-e7d5bf2d0fa064cf7b02528915278ad4.stex" ]
 
 [params]
 

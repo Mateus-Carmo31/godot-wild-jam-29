@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/overlay.png-44269a7b444beda07d445b18654b4230.stex"
+path="res://.import/mockup.png-4c452ff92318ed3673afd37b921e1351.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://overlay.png"
-dest_files=[ "res://.import/overlay.png-44269a7b444beda07d445b18654b4230.stex" ]
+source_file="res://assets/Sprites/mockup.png"
+dest_files=[ "res://.import/mockup.png-4c452ff92318ed3673afd37b921e1351.stex" ]
 
 [params]
 

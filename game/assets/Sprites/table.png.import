@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mockup2.png-a1a720584e2ebe17d59e8940618c8907.stex"
+path="res://.import/table.png-95404c7c165f092d5029d9e059f6c0e4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mockup2.png"
-dest_files=[ "res://.import/mockup2.png-a1a720584e2ebe17d59e8940618c8907.stex" ]
+source_file="res://assets/Sprites/table.png"
+dest_files=[ "res://.import/table.png-95404c7c165f092d5029d9e059f6c0e4.stex" ]
 
 [params]
 

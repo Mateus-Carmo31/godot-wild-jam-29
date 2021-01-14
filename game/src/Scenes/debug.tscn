@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://overlay.png" type="Texture" id=1]
-[ext_resource path="res://Table.gd" type="Script" id=2]
-[ext_resource path="res://Piece.gd" type="Script" id=4]
-[ext_resource path="res://mockup2.png" type="Texture" id=5]
-[ext_resource path="res://blocks.png" type="Texture" id=6]
-[ext_resource path="res://Level.gd" type="Script" id=7]
+[ext_resource path="res://assets/Sprites/overlay.png" type="Texture" id=1]
+[ext_resource path="res://src/Scripts/Table.gd" type="Script" id=2]
+[ext_resource path="res://src/Scripts/Piece.gd" type="Script" id=4]
+[ext_resource path="res://assets/Sprites/mockup2.png" type="Texture" id=5]
+[ext_resource path="res://assets/Sprites/blocks.png" type="Texture" id=6]
+[ext_resource path="res://src/Scripts/Level.gd" type="Script" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 border_width_left = 1
@@ -68,17 +68,18 @@ border_width_left = 1
 3/shapes = [  ]
 3/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 7, 7 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 3.09401, 16.6633 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 12.3976, 3.41557 )
 
 [node name="Level" type="Node"]
 script = ExtResource( 7 )
+level_id = "level0"
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -108,6 +109,70 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="PauseMenu" type="Control" parent="UI/Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="UI/Control/PauseMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.329412, 0.329412, 0.329412, 0.501961 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" type="Button" parent="UI/Control/PauseMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -144.979
+margin_right = 120.0
+margin_bottom = -65.9791
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Resume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart" type="Button" parent="UI/Control/PauseMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -36.1003
+margin_right = 120.0
+margin_bottom = 42.8997
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level Select" type="Button" parent="UI/Control/PauseMenu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = 76.1459
+margin_right = 120.0
+margin_bottom = 155.146
+focus_mode = 0
+enabled_focus_mode = 0
+text = "Level Select"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="TableBackgroud" type="Sprite" parent="."]
 scale = Vector2( 8, 8 )
 texture = ExtResource( 5 )
@@ -117,6 +182,7 @@ __meta__ = {
 }
 
 [node name="Table" type="TileMap" parent="."]
+pause_mode = 1
 position = Vector2( 440, 336 )
 scale = Vector2( 8, 8 )
 tile_set = SubResource( 2 )
@@ -148,7 +214,7 @@ region_rect = Rect2( 41, 31, 17, 17 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Piece"]
 visible = false
 position = Vector2( 4.42274, 4.42645 )
-shape = SubResource( 5 )
+shape = SubResource( 3 )
 
 [node name="Piece2" type="Area2D" parent="Table"]
 position = Vector2( 91.4023, 13.0538 )
@@ -210,7 +276,7 @@ region_rect = Rect2( 11, 22, 26, 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Piece4"]
 visible = false
-shape = SubResource( 3 )
+shape = SubResource( 5 )
 
 [node name="Piece5" type="Area2D" parent="Table"]
 position = Vector2( -44.8627, 23.3507 )
@@ -257,4 +323,5 @@ visible = false
 position = Vector2( -0.466232, 9.60139 )
 polygon = PoolVector2Array( 12.4051, -21.0413, 12.3426, -6.85378, -19.9074, -6.85378, -19.9074, -12.6663, -5.28238, -12.6663, -1.84488, -20.9788 )
 [connection signal="pressed" from="UI/Control/PackButton" to="." method="_on_PackButton_pressed"]
+[connection signal="pressed" from="UI/Control/PauseMenu/Restart" to="." method="restart_level"]
 [connection signal="table_updated" from="Table" to="." method="_on_Table_table_updated"]
