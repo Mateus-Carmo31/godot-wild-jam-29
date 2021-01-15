@@ -1,8 +1,6 @@
 extends CollisionObject2D
 class_name Piece
 
-export(String, MULTILINE) var description = ""
-
 export(Array, Vector2) var relative_spaces
 export(bool) var moveable = true
 export(bool) var rotatable = true

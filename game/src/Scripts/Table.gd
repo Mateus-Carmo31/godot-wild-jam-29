@@ -6,7 +6,6 @@ enum SLOT {OCCUPIED, ALLOW, DENY, FIXED}
 var rot_mat := Transform2D(Vector2(0, -1), Vector2(1, 0), Vector2.ZERO)
 
 var current_piece : Piece
-var currently_placed_pieces = 0
 
 signal table_updated(level_completed)
 
@@ -17,7 +16,6 @@ func _ready():
 			
 			if child.starts_placed_at != Vector2(-1,-1):
 				child.position = map_to_world(child.starts_placed_at) + cell_size/2 + Vector2(0.5, 0.5)
-				currently_placed_pieces += 1
 	
 	update_table()
 
@@ -40,9 +38,6 @@ func _input(event):
 
 func select_piece(piece):
 	current_piece = piece
-	
-	if current_piece.placed:
-		currently_placed_pieces -= 1 # This is just me being too lazy to make a proper piece counter
 	
 	current_piece.placed = false
 	emit_signal("table_updated", false) # The level can't be completed if a piece is being held
@@ -86,7 +81,6 @@ func deselect_piece():
 		
 		if(can_place_piece() == true):
 			current_piece.placed = true
-			currently_placed_pieces += 1
 		else:
 			current_piece.position = current_piece.original_position
 			current_piece.relative_spaces = current_piece.original_relatives.duplicate()

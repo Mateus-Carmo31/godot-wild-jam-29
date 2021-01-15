@@ -1,16 +1,40 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/Sprites/overlay.png" type="Texture" id=1]
 [ext_resource path="res://src/Scripts/Table.gd" type="Script" id=2]
+[ext_resource path="res://assets/Sprites/debug blocks/blocksO.png" type="Texture" id=3]
 [ext_resource path="res://src/Scripts/Piece.gd" type="Script" id=4]
 [ext_resource path="res://assets/Sprites/mockup2.png" type="Texture" id=5]
-[ext_resource path="res://assets/Sprites/blocks.png" type="Texture" id=6]
+[ext_resource path="res://assets/Sprites/debug blocks/blocks3I.png" type="Texture" id=6]
 [ext_resource path="res://src/Scripts/Level.gd" type="Script" id=7]
+[ext_resource path="res://assets/Sprites/debug blocks/blocksI.png" type="Texture" id=8]
+[ext_resource path="res://assets/Sprites/debug blocks/blocksT.png" type="Texture" id=9]
+[ext_resource path="res://assets/Sprites/debug blocks/blocksL.png" type="Texture" id=10]
+[ext_resource path="res://assets/Sprites/debug blocks/blocksS.png" type="Texture" id=11]
+[ext_resource path="res://assets/04B_03__.TTF" type="DynamicFontData" id=12]
+[ext_resource path="res://assets/palette_swap_darken.png" type="Texture" id=13]
+[ext_resource path="res://palette_changer.shader" type="Shader" id=14]
 
 [sub_resource type="StyleBoxFlat" id=1]
 border_width_left = 1
 
-[sub_resource type="TileSet" id=2]
+[sub_resource type="DynamicFont" id=2]
+size = 64
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+font_data = ExtResource( 12 )
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = ExtResource( 14 )
+shader_param/lookup_step = 0
+shader_param/lookup_palette = ExtResource( 13 )
+
+[sub_resource type="TileSet" id=5]
 0/name = "occupied"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
@@ -68,13 +92,13 @@ border_width_left = 1
 3/shapes = [  ]
 3/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 7, 7 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 3.09401, 16.6633 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 12.3976, 3.41557 )
 
 [node name="Level" type="Node"]
@@ -174,19 +198,285 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TableBackgroud" type="Sprite" parent="."]
-scale = Vector2( 8, 8 )
-texture = ExtResource( 5 )
-centered = false
+[node name="EndLevelScreen" type="Control" parent="UI/Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
-"_edit_lock_": true
+"_edit_use_anchors_": false
+}
+
+[node name="EndLevelBG" type="ColorRect" parent="UI/Control/EndLevelScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.227451, 0.227451, 0.227451, 1 )
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 345.0
+margin_top = 64.8775
+margin_right = -371.0
+margin_bottom = -595.122
+custom_fonts/font = SubResource( 2 )
+text = "Level Complete!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemsGotten" type="Control" parent="UI/Control/EndLevelScreen"]
+margin_left = 158.0
+margin_top = 168.615
+margin_right = 1086.0
+margin_bottom = 480.615
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Piece" type="Control" parent="UI/Control/EndLevelScreen/ItemsGotten"]
+visible = false
+anchor_bottom = 1.0
+margin_left = 1.31282
+margin_top = -2.83162
+margin_right = 430.313
+margin_bottom = -220.832
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EndLevelScreen/ItemsGotten/Piece"]
+margin_left = 16.0459
+margin_top = 6.60712
+margin_right = 77.0459
+margin_bottom = 69.6071
+texture = ExtResource( 3 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen/ItemsGotten/Piece"]
+margin_left = 129.0
+margin_top = 20.0
+margin_right = 429.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 300, 48 )
+custom_fonts/font = SubResource( 3 )
+text = "Test Text I humbly request that you ignore this
+                     - Mateus"
+autowrap = true
+
+[node name="Piece2" type="Control" parent="UI/Control/EndLevelScreen/ItemsGotten"]
+visible = false
+anchor_bottom = 1.0
+margin_left = 0.840881
+margin_top = 99.7021
+margin_right = 429.841
+margin_bottom = -118.298
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EndLevelScreen/ItemsGotten/Piece2"]
+margin_left = -20.0938
+margin_top = -13.7117
+margin_right = 111.906
+margin_bottom = 118.288
+rect_min_size = Vector2( 94, 94 )
+texture = ExtResource( 8 )
+stretch_mode = 6
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen/ItemsGotten/Piece2"]
+margin_left = 129.0
+margin_top = 20.0
+margin_right = 429.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 300, 48 )
+custom_fonts/font = SubResource( 3 )
+text = "Test Text I humbly request that you ignore this
+                     - Mateus"
+autowrap = true
+
+[node name="Piece3" type="Control" parent="UI/Control/EndLevelScreen/ItemsGotten"]
+visible = false
+anchor_bottom = 1.0
+margin_left = 1.31282
+margin_top = 226.274
+margin_right = 430.313
+margin_bottom = 8.27423
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EndLevelScreen/ItemsGotten/Piece3"]
+margin_left = -4.0
+margin_right = 94.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 94, 94 )
+texture = ExtResource( 9 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen/ItemsGotten/Piece3"]
+margin_left = 129.0
+margin_top = 20.0
+margin_right = 429.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 300, 48 )
+custom_fonts/font = SubResource( 3 )
+text = "Test Text I humbly request that you ignore this
+                     - Mateus"
+autowrap = true
+
+[node name="Piece4" type="Control" parent="UI/Control/EndLevelScreen/ItemsGotten"]
+visible = false
+anchor_bottom = 1.0
+margin_left = 466.271
+margin_top = -2.83162
+margin_right = 895.271
+margin_bottom = -220.832
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EndLevelScreen/ItemsGotten/Piece4"]
+margin_right = 97.0
+margin_bottom = 94.0
+rect_min_size = Vector2( 94, 94 )
+texture = ExtResource( 6 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen/ItemsGotten/Piece4"]
+margin_left = 129.0
+margin_top = 20.0
+margin_right = 429.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 300, 48 )
+custom_fonts/font = SubResource( 3 )
+text = "Test Text I humbly request that you ignore this
+                     - Mateus"
+autowrap = true
+
+[node name="Piece5" type="Control" parent="UI/Control/EndLevelScreen/ItemsGotten"]
+visible = false
+anchor_bottom = 1.0
+margin_left = 466.271
+margin_top = 99.7021
+margin_right = 895.271
+margin_bottom = -118.298
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EndLevelScreen/ItemsGotten/Piece5"]
+margin_right = 105.0
+margin_bottom = 99.0
+rect_min_size = Vector2( 94, 94 )
+texture = ExtResource( 11 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen/ItemsGotten/Piece5"]
+margin_left = 129.0
+margin_top = 20.0
+margin_right = 429.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 300, 48 )
+custom_fonts/font = SubResource( 3 )
+text = "Test Text I humbly request that you ignore this
+                     - Mateus"
+autowrap = true
+
+[node name="Piece6" type="Control" parent="UI/Control/EndLevelScreen/ItemsGotten"]
+visible = false
+anchor_bottom = 1.0
+margin_left = 466.271
+margin_top = 226.274
+margin_right = 895.271
+margin_bottom = 8.27423
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EndLevelScreen/ItemsGotten/Piece6"]
+margin_left = -30.0
+margin_top = -7.0
+margin_right = 105.0
+margin_bottom = 92.0
+rect_min_size = Vector2( 94, 94 )
+texture = ExtResource( 10 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen/ItemsGotten/Piece6"]
+margin_left = 129.0
+margin_top = 20.0
+margin_right = 429.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 300, 48 )
+custom_fonts/font = SubResource( 3 )
+text = "Test Text I humbly request that you ignore this
+                     - Mateus"
+autowrap = true
+
+[node name="PieceNum" type="Label" parent="UI/Control/EndLevelScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 359.592
+margin_top = 522.777
+margin_right = -356.408
+margin_bottom = -137.223
+custom_fonts/font = SubResource( 4 )
+text = "Pieces: x out of x"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="Button" parent="UI/Control/EndLevelScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 533.5
+margin_top = 618.074
+margin_right = -533.5
+margin_bottom = -71.9263
+text = "Continue"
+
+[node name="PaletteSwapper" type="ColorRect" parent="UI/Control"]
+material = SubResource( 9 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TableBG" type="TextureRect" parent="BG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
 }
 
 [node name="Table" type="TileMap" parent="."]
 pause_mode = 1
 position = Vector2( 440, 336 )
 scale = Vector2( 8, 8 )
-tile_set = SubResource( 2 )
+tile_set = SubResource( 5 )
 cell_size = Vector2( 9, 9 )
 cell_quadrant_size = 1
 format = 1
@@ -204,18 +494,16 @@ __meta__ = {
 "_edit_group_": true
 }
 relative_spaces = [ Vector2( 1, 0 ), Vector2( 0, 1 ), Vector2( 1, 1 ) ]
-victory_requirement = true
 
 [node name="Sprite" type="Sprite" parent="Table/Piece"]
-texture = ExtResource( 6 )
+texture = ExtResource( 3 )
 offset = Vector2( 4.5, 4.5 )
-region_enabled = true
 region_rect = Rect2( 41, 31, 17, 17 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Piece"]
 visible = false
 position = Vector2( 4.42274, 4.42645 )
-shape = SubResource( 3 )
+shape = SubResource( 6 )
 
 [node name="Piece2" type="Area2D" parent="Table"]
 position = Vector2( 91.4023, 13.0538 )
@@ -226,17 +514,17 @@ __meta__ = {
 "_edit_group_": true
 }
 relative_spaces = [ Vector2( 0, -1 ), Vector2( 0, 1 ), Vector2( 0, 2 ) ]
+victory_requirement = true
 
 [node name="Sprite" type="Sprite" parent="Table/Piece2"]
-texture = ExtResource( 6 )
+texture = ExtResource( 8 )
 offset = Vector2( 0, 4.5 )
-region_enabled = true
 region_rect = Rect2( 1, 1, 8, 35 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Piece2"]
 visible = false
 position = Vector2( 0, 4.38519 )
-shape = SubResource( 4 )
+shape = SubResource( 7 )
 
 [node name="Piece3" type="Area2D" parent="Table"]
 position = Vector2( 70.6128, 35.659 )
@@ -249,9 +537,8 @@ __meta__ = {
 relative_spaces = [ Vector2( -1, 0 ), Vector2( 0, -1 ), Vector2( 1, 0 ) ]
 
 [node name="Sprite" type="Sprite" parent="Table/Piece3"]
-texture = ExtResource( 6 )
+texture = ExtResource( 9 )
 offset = Vector2( 0, -4.5 )
-region_enabled = true
 region_rect = Rect2( 11, 1, 26, 17 )
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Table/Piece3"]
@@ -260,7 +547,7 @@ position = Vector2( -0.0648956, -2.25196 )
 polygon = PoolVector2Array( -11, 5, 11, 5, 0, -10 )
 
 [node name="Piece4" type="Area2D" parent="Table"]
-position = Vector2( -35.7474, 5.1791 )
+position = Vector2( -35.7474, 5.09071 )
 monitoring = false
 monitorable = false
 script = ExtResource( 4 )
@@ -272,12 +559,11 @@ victory_requirement = true
 
 [node name="Sprite" type="Sprite" parent="Table/Piece4"]
 texture = ExtResource( 6 )
-region_enabled = true
 region_rect = Rect2( 11, 22, 26, 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Piece4"]
 visible = false
-shape = SubResource( 5 )
+shape = SubResource( 8 )
 
 [node name="Piece5" type="Area2D" parent="Table"]
 position = Vector2( -44.8627, 23.3507 )
@@ -291,9 +577,8 @@ relative_spaces = [ Vector2( 1, 0 ), Vector2( 1, -1 ), Vector2( 0, 1 ) ]
 victory_requirement = true
 
 [node name="Sprite" type="Sprite" parent="Table/Piece5"]
-texture = ExtResource( 6 )
+texture = ExtResource( 11 )
 offset = Vector2( 4.5, 0 )
-region_enabled = true
 region_rect = Rect2( 39, 1, 17, 26 )
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Table/Piece5"]
@@ -302,7 +587,7 @@ position = Vector2( 4.5, 0 )
 polygon = PoolVector2Array( -7, 12, -7, -3, 7, -12, 7, 3 )
 
 [node name="Piece6" type="Area2D" parent="Table"]
-position = Vector2( -26.4744, 41.1143 )
+position = Vector2( -26.4744, 41.0355 )
 monitoring = false
 monitorable = false
 script = ExtResource( 4 )
@@ -314,9 +599,8 @@ starts_placed_at = Vector2( 3, 4 )
 victory_requirement = true
 
 [node name="Sprite" type="Sprite" parent="Table/Piece6"]
-texture = ExtResource( 6 )
+texture = ExtResource( 10 )
 offset = Vector2( -4.5, -4.5 )
-region_enabled = true
 region_rect = Rect2( 1, 36, 35, 17 )
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Table/Piece6"]
@@ -327,4 +611,5 @@ polygon = PoolVector2Array( 12.4051, -21.0413, 12.3426, -6.85378, -19.9074, -6.8
 [connection signal="pressed" from="UI/Control/PauseMenu/Resume" to="." method="_on_Resume_pressed"]
 [connection signal="pressed" from="UI/Control/PauseMenu/Restart" to="." method="restart_level"]
 [connection signal="pressed" from="UI/Control/PauseMenu/Level Select" to="." method="_on_Level_Select_pressed"]
+[connection signal="pressed" from="UI/Control/EndLevelScreen/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="table_updated" from="Table" to="." method="_on_Table_table_updated"]

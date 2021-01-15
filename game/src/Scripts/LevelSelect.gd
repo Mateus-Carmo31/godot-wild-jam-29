@@ -2,12 +2,14 @@ extends Control
 
 var level_data : Dictionary
 
+onready var buttons = $Buttons
+
 func _ready():
 	# Gets save data level information
 	level_data = GameDataHandler.get_level_data()
 	
 	# Links the level loading with every button, and associates the save data with each level tooltip
-	for btn in get_children():
+	for btn in buttons.get_children():
 		btn.connect("pressed", self, "load_level", [btn.name])
 		
 		if level_data[btn.name].unlocked == false:

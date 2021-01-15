@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/Scripts/LevelSelect.gd" type="Script" id=1]
+[ext_resource path="res://assets/palette_swap_darken.png" type="Texture" id=2]
+[ext_resource path="res://src/Scenes/LevelSelectButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://palette_changer.shader" type="Shader" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 4 )
+shader_param/lookup_step = 0
+shader_param/lookup_palette = ExtResource( 2 )
+
+[node name="LevelSelect" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="level0" parent="Buttons" instance=ExtResource( 3 )]
+margin_left = 138.25
+margin_top = 391.884
+margin_right = -1063.75
+margin_bottom = -311.116
+
+[node name="PaletteChanger" type="ColorRect" parent="."]
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}

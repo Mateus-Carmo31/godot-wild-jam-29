@@ -17,7 +17,7 @@ var level_data = {}
 func _ready():
 	load_level_data()
 
-func complete_level(level_id, num):
+func complete_level(level_id, score_num):
 	
 	if not level_data.has(level_id):
 		printerr("Level data dict does not contain id!")
@@ -25,8 +25,8 @@ func complete_level(level_id, num):
 	
 	# Update level information in the data dictionary
 	level_data[level_id].completed = true
-	if level_data[level_id].items_got < num:
-		level_data[level_id].items_got = num
+	if level_data[level_id].items_got < score_num:
+		level_data[level_id].items_got = score_num
 	
 	# Unlocks all the levels the completed level would unlock
 	for id in level_data[level_id].unlocks:
