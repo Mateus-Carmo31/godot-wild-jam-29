@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/Scripts/LevelSelect.gd" type="Script" id=1]
 [ext_resource path="res://assets/palette_swap_darken.png" type="Texture" id=2]
@@ -9,6 +9,37 @@
 shader = ExtResource( 4 )
 shader_param/lookup_step = 0
 shader_param/lookup_palette = ExtResource( 2 )
+
+[sub_resource type="Animation" id=11]
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("PaletteChanger:material:shader_param/lookup_step")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 5, 0, 0 ]
+}
+
+[sub_resource type="Animation" id=12]
+resource_name = "TransitionOut"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("PaletteChanger:material:shader_param/lookup_step")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 5, 5 ]
+}
 
 [node name="LevelSelect" type="Control"]
 anchor_right = 1.0
@@ -37,3 +68,8 @@ mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "TransitionIn"
+anims/TransitionIn = SubResource( 11 )
+anims/TransitionOut = SubResource( 12 )

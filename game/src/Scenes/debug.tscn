@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://assets/Sprites/overlay.png" type="Texture" id=1]
 [ext_resource path="res://src/Scripts/Table.gd" type="Script" id=2]
@@ -14,9 +14,43 @@
 [ext_resource path="res://assets/04B_03__.TTF" type="DynamicFontData" id=12]
 [ext_resource path="res://assets/palette_swap_darken.png" type="Texture" id=13]
 [ext_resource path="res://palette_changer.shader" type="Shader" id=14]
+[ext_resource path="res://assets/Sprites/menu_interface.png" type="Texture" id=15]
 
-[sub_resource type="StyleBoxFlat" id=1]
-border_width_left = 1
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 15 )
+region = Rect2( 15, 0, 30, 14 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 15 )
+region = Rect2( 15, 30, 30, 14 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 15 )
+region = Rect2( 15, 15, 30, 14 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 3, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 29, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 16, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 15 )
+region = Rect2( 48, 3, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 15 )
+region = Rect2( 48, 29, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 15 )
+region = Rect2( 48, 16, 12, 12 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 64
@@ -101,6 +135,38 @@ extents = Vector2( 3.09401, 16.6633 )
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 12.3976, 3.41557 )
 
+[sub_resource type="Animation" id=11]
+resource_name = "TransitionIn"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Control/PaletteSwapper:material:shader_param/lookup_step")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 5, 0, 0 ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "TransitionOut"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Control/PaletteSwapper:material:shader_param/lookup_step")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 5, 5 ]
+}
+
 [node name="Level" type="Node"]
 script = ExtResource( 7 )
 level_id = "level0"
@@ -116,84 +182,51 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PackButton" type="Button" parent="UI/Control"]
+[node name="PackButton" type="TextureButton" parent="UI/Control"]
 pause_mode = 1
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 949.0
-margin_top = 82.0
-margin_right = -129.0
-margin_bottom = -566.0
+margin_left = 952.392
+margin_top = 71.9646
+margin_right = -55.6082
+margin_bottom = -552.035
 focus_mode = 0
-custom_styles/normal = SubResource( 1 )
 disabled = true
 shortcut_in_tooltip = false
 enabled_focus_mode = 0
-text = "PACK!"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture_normal = SubResource( 18 )
+texture_pressed = SubResource( 19 )
+texture_hover = SubResource( 20 )
+texture_disabled = SubResource( 20 )
+expand = true
 
-[node name="PauseMenu" type="Control" parent="UI/Control"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ColorRect" type="ColorRect" parent="UI/Control/PauseMenu"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.243137, 0.243137, 0.243137, 0.388235 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Resume" type="Button" parent="UI/Control/PauseMenu"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -120.0
-margin_top = -144.979
-margin_right = 120.0
-margin_bottom = -65.9791
+[node name="Level Select" type="TextureButton" parent="UI/Control"]
+margin_left = 27.4984
+margin_top = 25.762
+margin_right = 123.498
+margin_bottom = 121.762
 focus_mode = 0
 enabled_focus_mode = 0
-text = "Resume"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+texture_normal = SubResource( 12 )
+texture_pressed = SubResource( 16 )
+texture_hover = SubResource( 17 )
+texture_disabled = SubResource( 17 )
+expand = true
+stretch_mode = 5
 
-[node name="Restart" type="Button" parent="UI/Control/PauseMenu"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -120.0
-margin_top = -36.1003
-margin_right = 120.0
-margin_bottom = 42.8997
+[node name="Restart" type="TextureButton" parent="UI/Control"]
+margin_left = 27.4984
+margin_top = 132.469
+margin_right = 123.498
+margin_bottom = 228.469
 focus_mode = 0
 enabled_focus_mode = 0
-text = "Restart"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Level Select" type="Button" parent="UI/Control/PauseMenu"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -120.0
-margin_top = 76.1459
-margin_right = 120.0
-margin_bottom = 155.146
-focus_mode = 0
-enabled_focus_mode = 0
-text = "Level Select"
+texture_normal = SubResource( 15 )
+texture_pressed = SubResource( 13 )
+texture_hover = SubResource( 14 )
+texture_disabled = SubResource( 14 )
+expand = true
+stretch_mode = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -203,6 +236,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -212,15 +246,15 @@ anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0.227451, 0.227451, 0.227451, 1 )
 
-[node name="Label" type="Label" parent="UI/Control/EndLevelScreen"]
+[node name="CompleteText" type="Label" parent="UI/Control/EndLevelScreen"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 345.0
+margin_left = 172.806
 margin_top = 64.8775
-margin_right = -371.0
+margin_right = -179.194
 margin_bottom = -595.122
 custom_fonts/font = SubResource( 2 )
-text = "Level Complete!"
+text = "And the travels continue..."
 align = 1
 valign = 1
 __meta__ = {
@@ -426,11 +460,12 @@ text = "Test Text I humbly request that you ignore this
 autowrap = true
 
 [node name="PieceNum" type="Label" parent="UI/Control/EndLevelScreen"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 359.592
+margin_left = 334.23
 margin_top = 522.777
-margin_right = -356.408
+margin_right = -381.77
 margin_bottom = -137.223
 custom_fonts/font = SubResource( 4 )
 text = "Pieces: x out of x"
@@ -440,12 +475,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Continue" type="Button" parent="UI/Control/EndLevelScreen"]
+[node name="Retry" type="Button" parent="UI/Control/EndLevelScreen"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 533.5
+margin_left = 381.983
 margin_top = 618.074
-margin_right = -533.5
+margin_right = -685.017
+margin_bottom = -71.9263
+text = "Retry"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Continue" type="Button" parent="UI/Control/EndLevelScreen"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 628.149
+margin_top = 618.074
+margin_right = -438.851
 margin_bottom = -71.9263
 text = "Continue"
 
@@ -455,6 +504,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -469,6 +519,7 @@ texture = ExtResource( 5 )
 expand = true
 stretch_mode = 1
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -607,9 +658,14 @@ region_rect = Rect2( 1, 36, 35, 17 )
 visible = false
 position = Vector2( -0.466232, 9.60139 )
 polygon = PoolVector2Array( 12.4051, -21.0413, 12.3426, -6.85378, -19.9074, -6.85378, -19.9074, -12.6663, -5.28238, -12.6663, -1.84488, -20.9788 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "TransitionIn"
+anims/TransitionIn = SubResource( 11 )
+anims/TransitionOut = SubResource( 10 )
 [connection signal="pressed" from="UI/Control/PackButton" to="." method="_on_PackButton_pressed"]
-[connection signal="pressed" from="UI/Control/PauseMenu/Resume" to="." method="_on_Resume_pressed"]
-[connection signal="pressed" from="UI/Control/PauseMenu/Restart" to="." method="restart_level"]
-[connection signal="pressed" from="UI/Control/PauseMenu/Level Select" to="." method="_on_Level_Select_pressed"]
+[connection signal="pressed" from="UI/Control/Level Select" to="." method="_on_Level_Select_pressed"]
+[connection signal="pressed" from="UI/Control/Restart" to="." method="restart_level"]
+[connection signal="pressed" from="UI/Control/EndLevelScreen/Retry" to="." method="restart_level"]
 [connection signal="pressed" from="UI/Control/EndLevelScreen/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="table_updated" from="Table" to="." method="_on_Table_table_updated"]

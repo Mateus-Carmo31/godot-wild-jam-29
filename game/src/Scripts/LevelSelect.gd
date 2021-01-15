@@ -3,6 +3,7 @@ extends Control
 var level_data : Dictionary
 
 onready var buttons = $Buttons
+onready var anim_player = $AnimationPlayer
 
 func _ready():
 	# Gets save data level information
@@ -20,5 +21,8 @@ func _ready():
 							   level_data[btn.name].completed)
 
 func load_level(id):
+	buttons.hide()
+	anim_player.play("TransitionOut")
+	yield(anim_player, "animation_finished")
 	get_tree().change_scene(LevelScenes.get_level_by_id(id))
 	print("Changing level to " + id)
