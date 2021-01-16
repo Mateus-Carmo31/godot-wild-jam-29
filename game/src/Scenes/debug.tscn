@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://assets/Sprites/overlay.png" type="Texture" id=1]
 [ext_resource path="res://src/Scripts/Table.gd" type="Script" id=2]
@@ -15,6 +15,12 @@
 [ext_resource path="res://assets/palette_swap_darken.png" type="Texture" id=13]
 [ext_resource path="res://palette_changer.shader" type="Shader" id=14]
 [ext_resource path="res://assets/Sprites/menu_interface.png" type="Texture" id=15]
+[ext_resource path="res://assets/Sprites/diorama.png" type="Texture" id=16]
+[ext_resource path="res://assets/Sprites/diorama_bubble.png" type="Texture" id=17]
+
+[sub_resource type="DynamicFont" id=21]
+size = 32
+font_data = ExtResource( 12 )
 
 [sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 15 )
@@ -62,6 +68,18 @@ font_data = ExtResource( 12 )
 [sub_resource type="DynamicFont" id=4]
 size = 40
 font_data = ExtResource( 12 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 15 )
+region = Rect2( 63, 3, 17, 12 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 15 )
+region = Rect2( 63, 29, 17, 12 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 15 )
+region = Rect2( 63, 16, 17, 12 )
 
 [sub_resource type="ShaderMaterial" id=9]
 shader = ExtResource( 14 )
@@ -182,13 +200,49 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Diorama" type="TextureRect" parent="UI/Control"]
+margin_left = 363.939
+margin_top = 23.7551
+margin_right = 883.939
+margin_bottom = 247.755
+texture = ExtResource( 16 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DioramaBubble" type="TextureRect" parent="UI/Control"]
+visible = false
+margin_left = 452.453
+margin_top = 27.5659
+margin_right = 732.453
+margin_bottom = 147.566
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/DioramaBubble"]
+margin_left = 39.0
+margin_right = 280.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 21 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "Piece1"
+align = 1
+valign = 1
+clip_text = true
+
 [node name="PackButton" type="TextureButton" parent="UI/Control"]
 pause_mode = 1
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 952.392
+margin_left = 982.698
 margin_top = 71.9646
-margin_right = -55.6082
+margin_right = -25.3016
 margin_bottom = -552.035
 focus_mode = 0
 disabled = true
@@ -475,28 +529,33 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Retry" type="Button" parent="UI/Control/EndLevelScreen"]
+[node name="Retry" type="TextureButton" parent="UI/Control/EndLevelScreen"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 381.983
-margin_top = 618.074
-margin_right = -685.017
-margin_bottom = -71.9263
-text = "Retry"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_left = 412.421
+margin_top = 589.946
+margin_right = -739.579
+margin_bottom = -50.0536
+texture_normal = SubResource( 15 )
+texture_pressed = SubResource( 13 )
+texture_hover = SubResource( 14 )
+texture_disabled = SubResource( 14 )
+expand = true
+stretch_mode = 5
 
-[node name="Continue" type="Button" parent="UI/Control/EndLevelScreen"]
+[node name="Continue" type="TextureButton" parent="UI/Control/EndLevelScreen"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 628.149
-margin_top = 618.074
-margin_right = -438.851
-margin_bottom = -71.9263
-text = "Continue"
+margin_left = 662.026
+margin_top = 589.946
+margin_right = -449.974
+margin_bottom = -50.0536
+texture_normal = SubResource( 22 )
+texture_pressed = SubResource( 23 )
+texture_hover = SubResource( 24 )
+expand = true
 
 [node name="PaletteSwapper" type="ColorRect" parent="UI/Control"]
 material = SubResource( 9 )

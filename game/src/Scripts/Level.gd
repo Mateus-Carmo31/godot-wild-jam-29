@@ -31,6 +31,15 @@ func set_up_end_level_screen(placed_pieces, total_pieces):
 
 func _on_Table_table_updated(level_completed):
 	pack_button.disabled = !level_completed
+	
+	if table.current_piece:
+		$UI/Control/DioramaBubble.show()
+		if table.current_piece.victory_requirement:
+			$UI/Control/DioramaBubble/Label.text = table.current_piece.name + "!"
+		else:
+			$UI/Control/DioramaBubble/Label.text = table.current_piece.name
+	else:
+		$UI/Control/DioramaBubble.hide()
 
 func _on_PackButton_pressed():
 	
