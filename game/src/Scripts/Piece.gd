@@ -19,5 +19,5 @@ func _ready():
 
 func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
-		if event.is_pressed():
+		if event.is_pressed() and moveable:
 			emit_signal("selected")

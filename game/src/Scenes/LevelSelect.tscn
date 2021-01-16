@@ -10,7 +10,7 @@ shader = ExtResource( 4 )
 shader_param/lookup_step = 0
 shader_param/lookup_palette = ExtResource( 2 )
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=2]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("PaletteChanger:material:shader_param/lookup_step")
@@ -25,7 +25,7 @@ tracks/0/keys = {
 "values": [ 5, 0, 0 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=3]
 resource_name = "TransitionOut"
 length = 0.8
 tracks/0/type = "value"
@@ -71,5 +71,5 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "TransitionIn"
-anims/TransitionIn = SubResource( 11 )
-anims/TransitionOut = SubResource( 12 )
+anims/TransitionIn = SubResource( 2 )
+anims/TransitionOut = SubResource( 3 )

@@ -1,0 +1,10 @@
+ - Level select?
+ - SFX para liberar um novo nível
+ - Pegar peça
+ - Pegar peça obrigatória
+ - Soltar peça
+ - Clicar em botão (pode ser o mesmo nos outros menus)
+ - Clicar no botão Pack
+ - SFX para cada objeto pego no menu de nível completo
+ - SFX diferente para items não pegos?
+ 

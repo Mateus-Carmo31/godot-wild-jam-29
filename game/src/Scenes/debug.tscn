@@ -18,75 +18,75 @@
 [ext_resource path="res://assets/Sprites/diorama.png" type="Texture" id=16]
 [ext_resource path="res://assets/Sprites/diorama_bubble.png" type="Texture" id=17]
 
-[sub_resource type="DynamicFont" id=21]
+[sub_resource type="DynamicFont" id=1]
 size = 32
 font_data = ExtResource( 12 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 15 )
 region = Rect2( 15, 0, 30, 14 )
 
-[sub_resource type="AtlasTexture" id=19]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 15 )
 region = Rect2( 15, 30, 30, 14 )
 
-[sub_resource type="AtlasTexture" id=20]
+[sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 15 )
 region = Rect2( 15, 15, 30, 14 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 15 )
 region = Rect2( 0, 3, 12, 12 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 15 )
 region = Rect2( 0, 29, 12, 12 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 15 )
 region = Rect2( 0, 16, 12, 12 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 15 )
 region = Rect2( 48, 3, 12, 12 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 15 )
 region = Rect2( 48, 29, 12, 12 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 15 )
 region = Rect2( 48, 16, 12, 12 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=11]
 size = 64
 font_data = ExtResource( 12 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=12]
 font_data = ExtResource( 12 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=13]
 size = 40
 font_data = ExtResource( 12 )
 
-[sub_resource type="AtlasTexture" id=22]
+[sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 15 )
 region = Rect2( 63, 3, 17, 12 )
 
-[sub_resource type="AtlasTexture" id=23]
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 15 )
 region = Rect2( 63, 29, 17, 12 )
 
-[sub_resource type="AtlasTexture" id=24]
+[sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 15 )
 region = Rect2( 63, 16, 17, 12 )
 
-[sub_resource type="ShaderMaterial" id=9]
+[sub_resource type="ShaderMaterial" id=17]
 shader = ExtResource( 14 )
 shader_param/lookup_step = 0
 shader_param/lookup_palette = ExtResource( 13 )
 
-[sub_resource type="TileSet" id=5]
+[sub_resource type="TileSet" id=18]
 0/name = "occupied"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
@@ -144,17 +144,16 @@ shader_param/lookup_palette = ExtResource( 13 )
 3/shapes = [  ]
 3/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 7, 7 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=20]
 extents = Vector2( 3.09401, 16.6633 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 12.3976, 3.41557 )
 
-[sub_resource type="Animation" id=11]
-resource_name = "TransitionIn"
+[sub_resource type="Animation" id=22]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("UI/Control/PaletteSwapper:material:shader_param/lookup_step")
@@ -169,8 +168,7 @@ tracks/0/keys = {
 "values": [ 5, 0, 0 ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "TransitionOut"
+[sub_resource type="Animation" id=23]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("UI/Control/PaletteSwapper:material:shader_param/lookup_step")
@@ -213,7 +211,6 @@ __meta__ = {
 }
 
 [node name="DioramaBubble" type="TextureRect" parent="UI/Control"]
-visible = false
 margin_left = 452.453
 margin_top = 27.5659
 margin_right = 732.453
@@ -229,7 +226,7 @@ __meta__ = {
 margin_left = 39.0
 margin_right = 280.0
 margin_bottom = 72.0
-custom_fonts/font = SubResource( 21 )
+custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
 text = "Piece1"
 align = 1
@@ -248,11 +245,14 @@ focus_mode = 0
 disabled = true
 shortcut_in_tooltip = false
 enabled_focus_mode = 0
-texture_normal = SubResource( 18 )
-texture_pressed = SubResource( 19 )
-texture_hover = SubResource( 20 )
-texture_disabled = SubResource( 20 )
+texture_normal = SubResource( 2 )
+texture_pressed = SubResource( 3 )
+texture_hover = SubResource( 4 )
+texture_disabled = SubResource( 4 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Level Select" type="TextureButton" parent="UI/Control"]
 margin_left = 27.4984
@@ -261,10 +261,10 @@ margin_right = 123.498
 margin_bottom = 121.762
 focus_mode = 0
 enabled_focus_mode = 0
-texture_normal = SubResource( 12 )
-texture_pressed = SubResource( 16 )
-texture_hover = SubResource( 17 )
-texture_disabled = SubResource( 17 )
+texture_normal = SubResource( 5 )
+texture_pressed = SubResource( 6 )
+texture_hover = SubResource( 7 )
+texture_disabled = SubResource( 7 )
 expand = true
 stretch_mode = 5
 
@@ -275,10 +275,10 @@ margin_right = 123.498
 margin_bottom = 228.469
 focus_mode = 0
 enabled_focus_mode = 0
-texture_normal = SubResource( 15 )
-texture_pressed = SubResource( 13 )
-texture_hover = SubResource( 14 )
-texture_disabled = SubResource( 14 )
+texture_normal = SubResource( 8 )
+texture_pressed = SubResource( 9 )
+texture_hover = SubResource( 10 )
+texture_disabled = SubResource( 10 )
 expand = true
 stretch_mode = 5
 __meta__ = {
@@ -307,7 +307,7 @@ margin_left = 172.806
 margin_top = 64.8775
 margin_right = -179.194
 margin_bottom = -595.122
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 11 )
 text = "And the travels continue..."
 align = 1
 valign = 1
@@ -349,7 +349,7 @@ margin_top = 20.0
 margin_right = 429.0
 margin_bottom = 74.0
 rect_min_size = Vector2( 300, 48 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 12 )
 text = "Test Text I humbly request that you ignore this
                      - Mateus"
 autowrap = true
@@ -380,7 +380,7 @@ margin_top = 20.0
 margin_right = 429.0
 margin_bottom = 74.0
 rect_min_size = Vector2( 300, 48 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 12 )
 text = "Test Text I humbly request that you ignore this
                      - Mateus"
 autowrap = true
@@ -410,7 +410,7 @@ margin_top = 20.0
 margin_right = 429.0
 margin_bottom = 74.0
 rect_min_size = Vector2( 300, 48 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 12 )
 text = "Test Text I humbly request that you ignore this
                      - Mateus"
 autowrap = true
@@ -442,7 +442,7 @@ margin_top = 20.0
 margin_right = 429.0
 margin_bottom = 74.0
 rect_min_size = Vector2( 300, 48 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 12 )
 text = "Test Text I humbly request that you ignore this
                      - Mateus"
 autowrap = true
@@ -474,7 +474,7 @@ margin_top = 20.0
 margin_right = 429.0
 margin_bottom = 74.0
 rect_min_size = Vector2( 300, 48 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 12 )
 text = "Test Text I humbly request that you ignore this
                      - Mateus"
 autowrap = true
@@ -508,7 +508,7 @@ margin_top = 20.0
 margin_right = 429.0
 margin_bottom = 74.0
 rect_min_size = Vector2( 300, 48 )
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 12 )
 text = "Test Text I humbly request that you ignore this
                      - Mateus"
 autowrap = true
@@ -521,7 +521,7 @@ margin_left = 334.23
 margin_top = 522.777
 margin_right = -381.77
 margin_bottom = -137.223
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 13 )
 text = "Pieces: x out of x"
 align = 1
 valign = 1
@@ -537,10 +537,10 @@ margin_left = 412.421
 margin_top = 589.946
 margin_right = -739.579
 margin_bottom = -50.0536
-texture_normal = SubResource( 15 )
-texture_pressed = SubResource( 13 )
-texture_hover = SubResource( 14 )
-texture_disabled = SubResource( 14 )
+texture_normal = SubResource( 8 )
+texture_pressed = SubResource( 9 )
+texture_hover = SubResource( 10 )
+texture_disabled = SubResource( 10 )
 expand = true
 stretch_mode = 5
 
@@ -552,13 +552,13 @@ margin_left = 662.026
 margin_top = 589.946
 margin_right = -449.974
 margin_bottom = -50.0536
-texture_normal = SubResource( 22 )
-texture_pressed = SubResource( 23 )
-texture_hover = SubResource( 24 )
+texture_normal = SubResource( 14 )
+texture_pressed = SubResource( 15 )
+texture_hover = SubResource( 16 )
 expand = true
 
 [node name="PaletteSwapper" type="ColorRect" parent="UI/Control"]
-material = SubResource( 9 )
+material = SubResource( 17 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -586,7 +586,7 @@ __meta__ = {
 pause_mode = 1
 position = Vector2( 440, 336 )
 scale = Vector2( 8, 8 )
-tile_set = SubResource( 5 )
+tile_set = SubResource( 18 )
 cell_size = Vector2( 9, 9 )
 cell_quadrant_size = 1
 format = 1
@@ -613,7 +613,7 @@ region_rect = Rect2( 41, 31, 17, 17 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Piece"]
 visible = false
 position = Vector2( 4.42274, 4.42645 )
-shape = SubResource( 6 )
+shape = SubResource( 19 )
 
 [node name="Piece2" type="Area2D" parent="Table"]
 position = Vector2( 91.4023, 13.0538 )
@@ -634,7 +634,7 @@ region_rect = Rect2( 1, 1, 8, 35 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Piece2"]
 visible = false
 position = Vector2( 0, 4.38519 )
-shape = SubResource( 7 )
+shape = SubResource( 20 )
 
 [node name="Piece3" type="Area2D" parent="Table"]
 position = Vector2( 70.6128, 35.659 )
@@ -673,7 +673,7 @@ region_rect = Rect2( 11, 22, 26, 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Piece4"]
 visible = false
-shape = SubResource( 8 )
+shape = SubResource( 21 )
 
 [node name="Piece5" type="Area2D" parent="Table"]
 position = Vector2( -44.8627, 23.3507 )
@@ -697,7 +697,7 @@ position = Vector2( 4.5, 0 )
 polygon = PoolVector2Array( -7, 12, -7, -3, 7, -12, 7, 3 )
 
 [node name="Piece6" type="Area2D" parent="Table"]
-position = Vector2( -26.4744, 41.0355 )
+position = Vector2( -26.4744, 40.8952 )
 monitoring = false
 monitorable = false
 script = ExtResource( 4 )
@@ -705,6 +705,7 @@ __meta__ = {
 "_edit_group_": true
 }
 relative_spaces = [ Vector2( 1, 0 ), Vector2( -1, 0 ), Vector2( -2, 0 ), Vector2( 0, -1 ), Vector2( 1, -1 ) ]
+moveable = false
 starts_placed_at = Vector2( 3, 4 )
 victory_requirement = true
 
@@ -720,8 +721,8 @@ polygon = PoolVector2Array( 12.4051, -21.0413, 12.3426, -6.85378, -19.9074, -6.8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "TransitionIn"
-anims/TransitionIn = SubResource( 11 )
-anims/TransitionOut = SubResource( 10 )
+anims/TransitionIn = SubResource( 22 )
+anims/TransitionOut = SubResource( 23 )
 [connection signal="pressed" from="UI/Control/PackButton" to="." method="_on_PackButton_pressed"]
 [connection signal="pressed" from="UI/Control/Level Select" to="." method="_on_Level_Select_pressed"]
 [connection signal="pressed" from="UI/Control/Restart" to="." method="restart_level"]
