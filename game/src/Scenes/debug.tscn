@@ -211,6 +211,7 @@ __meta__ = {
 }
 
 [node name="DioramaBubble" type="TextureRect" parent="UI/Control"]
+visible = false
 margin_left = 452.453
 margin_top = 27.5659
 margin_right = 732.453
