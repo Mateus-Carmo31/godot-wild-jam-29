@@ -273,6 +273,9 @@ texture_hover = SubResource( 7 )
 texture_disabled = SubResource( 7 )
 expand = true
 stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Restart" type="TextureButton" parent="UI/Control"]
 margin_left = 27.4984

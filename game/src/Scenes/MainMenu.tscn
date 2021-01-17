@@ -1,16 +1,228 @@
-[gd_scene format=2]
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://palette_changer.shader" type="Shader" id=1]
+[ext_resource path="res://assets/palette_swap_darken.png" type="Texture" id=2]
+[ext_resource path="res://assets/Sprites/scroller_bg.png" type="Texture" id=3]
+[ext_resource path="res://assets/Sprites/menu_interface.png" type="Texture" id=4]
+[ext_resource path="res://assets/04B_03__.TTF" type="DynamicFontData" id=5]
+[ext_resource path="res://src/Scripts/MainMenu.gd" type="Script" id=6]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+vec2 rotateUV(vec2 uv, float rotation)
+{
+    float mid = 0.5;
+    return vec2(
+        cos(rotation) * (uv.x - mid) + sin(rotation) * (uv.y - mid) + mid,
+        cos(rotation) * (uv.y - mid) - sin(rotation) * (uv.x - mid) + mid
+    );
+}
+
+void fragment()
+{
+	vec2 uv = UV;
+	uv = rotateUV(uv, 3.14/-24.0);
+	uv = vec2(uv.x + TIME / 6.0, uv.y);
+	COLOR = texture(TEXTURE, uv);
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 1 )
+shader_param/lookup_step = 3
+shader_param/lookup_palette = ExtResource( 2 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 4 )
+region = Rect2( 128, 0, 30, 14 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 4 )
+region = Rect2( 128, 30, 30, 14 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 4 )
+region = Rect2( 128, 15, 30, 14 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 4 )
+region = Rect2( 113, 3, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 4 )
+region = Rect2( 113, 29, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 4 )
+region = Rect2( 113, 16, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 4 )
+region = Rect2( 98, 3, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 4 )
+region = Rect2( 98, 29, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 4 )
+region = Rect2( 98, 16, 12, 12 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 48
+font_data = ExtResource( 5 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 3, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 29, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 16, 12, 12 )
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Scroller" type="TextureRect" parent="."]
+material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+texture = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="PaletteChanger" type="ColorRect" parent="."]
+material = SubResource( 4 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Buttons" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Play" type="TextureButton" parent="Buttons"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 460.5
+margin_top = 401.809
+margin_right = -460.5
+margin_bottom = -181.191
+texture_normal = SubResource( 5 )
+texture_pressed = SubResource( 6 )
+texture_hover = SubResource( 7 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Credits" type="TextureButton" parent="Buttons"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 979.333
+margin_top = 629.188
+margin_right = -184.667
+margin_bottom = -22.8115
+texture_normal = SubResource( 8 )
+texture_pressed = SubResource( 9 )
+texture_hover = SubResource( 10 )
+expand = true
+
+[node name="Exit" type="TextureButton" parent="Buttons"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1096.47
+margin_top = 629.188
+margin_right = -67.53
+margin_bottom = -22.8115
+texture_normal = SubResource( 11 )
+texture_pressed = SubResource( 12 )
+texture_hover = SubResource( 13 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Names" type="Label" parent="Credits"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 227.0
+margin_top = 99.0615
+margin_right = -226.0
+margin_bottom = -537.938
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0.713726, 0.631373, 0.431373, 1 )
+text = "A Game by Mateus Carmo and Pedro Braz"
+align = 1
+autowrap = true
+
+[node name="Tools" type="Label" parent="Credits"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 227.0
+margin_top = 294.0
+margin_right = -226.0
+margin_bottom = -88.0
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0.713726, 0.631373, 0.431373, 1 )
+text = "Tools/Sources used:
+
+- Aseprite
+- OpenGameArt
+- Bosca Ceoil
+- Chiptone
+- Godot (of course)"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GoBack" type="TextureButton" parent="Credits"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 979.333
+margin_top = 629.188
+margin_right = -184.667
+margin_bottom = -22.8115
+texture_normal = SubResource( 15 )
+texture_pressed = SubResource( 16 )
+texture_hover = SubResource( 17 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Buttons/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Buttons/Credits" to="." method="show_credits"]
+[connection signal="pressed" from="Buttons/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="Credits/GoBack" to="." method="hide_credits"]

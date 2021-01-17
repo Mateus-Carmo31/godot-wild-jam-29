@@ -21,6 +21,7 @@ func _ready():
 							   level_data[btn.name].completed)
 
 func load_level(id):
+	$LevelSelectedSFX.play()
 	buttons.hide()
 	anim_player.play("TransitionOut")
 	yield(anim_player, "animation_finished")
