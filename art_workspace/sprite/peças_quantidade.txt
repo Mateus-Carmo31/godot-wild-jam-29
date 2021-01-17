@@ -4,10 +4,10 @@ P (6 blocos) FEITO
 T (4 blocos) x2
 L (5 blocos) FEITO
 S (4 blocos) FEITO
-O (4 blocos) x2
+O (4 blocos) FEITO
 O (6 blocos) FEITO
 O (9 blocos) FEITO
 I (5 blocos) FEITO
-I (4 blocos)
-I (3 blocos)
-I (2 blocos)
+I (4 blocos) FEITO
+I (3 blocos) FEITO
+I (2 blocos) FEITO
