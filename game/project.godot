@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="GWJ29"
-run/main_scene="res://src/Scenes/debug.tscn"
+run/main_scene="res://src/Scenes/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]

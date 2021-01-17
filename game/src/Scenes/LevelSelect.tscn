@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/Scripts/LevelSelect.gd" type="Script" id=1]
 [ext_resource path="res://assets/palette_swap_darken.png" type="Texture" id=2]
@@ -7,25 +7,26 @@
 [ext_resource path="res://assets/Sprites/map.png" type="Texture" id=5]
 [ext_resource path="res://assets/Sprites/menu_interface.png" type="Texture" id=6]
 [ext_resource path="res://assets/Sounds/button_click.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/Sounds/level_select.wav" type="AudioStream" id=8]
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 6 )
 region = Rect2( 83, 3, 12, 12 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 6 )
 region = Rect2( 83, 29, 12, 12 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 6 )
 region = Rect2( 83, 16, 12, 12 )
 
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="ShaderMaterial" id=4]
 shader = ExtResource( 4 )
 shader_param/lookup_step = 0
 shader_param/lookup_palette = ExtResource( 2 )
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=5]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("PaletteChanger:material:shader_param/lookup_step")
@@ -40,8 +41,7 @@ tracks/0/keys = {
 "values": [ 5, 0, 0 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "TransitionOut"
+[sub_resource type="Animation" id=6]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("PaletteChanger:material:shader_param/lookup_step")
@@ -165,16 +165,16 @@ margin_left = 26.9067
 margin_top = 22.1012
 margin_right = 98.9067
 margin_bottom = 94.1012
-texture_normal = SubResource( 4 )
-texture_pressed = SubResource( 5 )
-texture_hover = SubResource( 6 )
+texture_normal = SubResource( 1 )
+texture_pressed = SubResource( 2 )
+texture_hover = SubResource( 3 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="PaletteChanger" type="ColorRect" parent="."]
-material = SubResource( 1 )
+material = SubResource( 4 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -185,13 +185,16 @@ __meta__ = {
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "TransitionIn"
-anims/TransitionIn = SubResource( 2 )
-anims/TransitionOut = SubResource( 3 )
+anims/TransitionIn = SubResource( 5 )
+anims/TransitionOut = SubResource( 6 )
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -5.0
+autoplay = true
 bus = "Music"
 
 [node name="LevelSelectedSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-volume_db = -15.0
+volume_db = -30.0
 bus = "SFX"

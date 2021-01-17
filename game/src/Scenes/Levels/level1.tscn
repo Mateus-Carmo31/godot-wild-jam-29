@@ -1,7 +1,8 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://assets/Sprites/overlay.png" type="Texture" id=1]
 [ext_resource path="res://src/Scripts/Table.gd" type="Script" id=2]
+[ext_resource path="res://assets/Sounds/level.wav" type="AudioStream" id=3]
 [ext_resource path="res://src/Scripts/Piece.gd" type="Script" id=4]
 [ext_resource path="res://assets/Sprites/mockup2.png" type="Texture" id=5]
 [ext_resource path="res://assets/Sprites/pieces/6O-1.png" type="Texture" id=6]
@@ -148,16 +149,16 @@ shader_param/lookup_palette = ExtResource( 13 )
 3/shapes = [  ]
 3/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=22]
+[sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 7.82391, 12.1138 )
 
-[sub_resource type="RectangleShape2D" id=23]
+[sub_resource type="RectangleShape2D" id=20]
 extents = Vector2( 16.6652, 5.45544 )
 
-[sub_resource type="RectangleShape2D" id=24]
+[sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 9.73727, 8.12248 )
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=22]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("UI/Control/PaletteSwapper:material:shader_param/lookup_step")
@@ -172,7 +173,7 @@ tracks/0/keys = {
 "values": [ 5, 0, 0 ]
 }
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=23]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("UI/Control/PaletteSwapper:material:shader_param/lookup_step")
@@ -554,7 +555,7 @@ __meta__ = {
 
 [node name="ButtonClick" type="AudioStreamPlayer" parent="UI/Control"]
 stream = ExtResource( 22 )
-volume_db = -15.0
+volume_db = -30.0
 bus = "SFX"
 
 [node name="PackButtonClick" type="AudioStreamPlayer" parent="UI/Control"]
@@ -633,7 +634,7 @@ region_rect = Rect2( 41, 31, 17, 17 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Pieces/Arrows"]
 position = Vector2( 4.5, 9 )
-shape = SubResource( 22 )
+shape = SubResource( 19 )
 
 [node name="Bow" type="Area2D" parent="Table/Pieces"]
 position = Vector2( -44.0626, 3.69328 )
@@ -654,7 +655,7 @@ region_rect = Rect2( 41, 31, 17, 17 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Pieces/Bow"]
 position = Vector2( 4.5, 9 )
-shape = SubResource( 22 )
+shape = SubResource( 19 )
 
 [node name="Cane" type="Area2D" parent="Table/Pieces"]
 position = Vector2( -35.9685, 30.5709 )
@@ -676,7 +677,7 @@ region_rect = Rect2( 41, 31, 17, 17 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Pieces/Cane"]
 position = Vector2( 5.253, 4.5 )
-shape = SubResource( 23 )
+shape = SubResource( 20 )
 
 [node name="Sack" type="Area2D" parent="Table/Pieces"]
 position = Vector2( 73.2323, 25.3283 )
@@ -697,7 +698,7 @@ region_rect = Rect2( 41, 31, 17, 17 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Pieces/Sack"]
 position = Vector2( 0, 5 )
-shape = SubResource( 24 )
+shape = SubResource( 21 )
 
 [node name="PiecePlace" type="AudioStreamPlayer" parent="Table"]
 stream = ExtResource( 19 )
@@ -711,8 +712,13 @@ bus = "SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "TransitionIn"
-anims/TransitionIn = SubResource( 20 )
-anims/TransitionOut = SubResource( 21 )
+anims/TransitionIn = SubResource( 22 )
+anims/TransitionOut = SubResource( 23 )
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+bus = "Music"
 [connection signal="pressed" from="UI/Control/PackButton" to="." method="_on_PackButton_pressed"]
 [connection signal="pressed" from="UI/Control/Level Select" to="." method="_on_Level_Select_pressed"]
 [connection signal="pressed" from="UI/Control/Restart" to="." method="restart_level"]
