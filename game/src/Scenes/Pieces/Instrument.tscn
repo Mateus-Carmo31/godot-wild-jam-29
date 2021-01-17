@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Scripts/Piece.gd" type="Script" id=1]
+[ext_resource path="res://assets/Sprites/pieces/6P-2.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=28]
+extents = Vector2( 8.15318, 16.4385 )
+
+[node name="Instrument" type="Area2D"]
+position = Vector2( -22.7555, 11.2769 )
+monitoring = false
+monitorable = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+relative_spaces = [ Vector2( 0, -1 ), Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( 0, 2 ), Vector2( 1, 2 ) ]
+victory_requirement = true
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+offset = Vector2( 4.5, 4.5 )
+region_rect = Rect2( 41, 31, 17, 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2.423, 4.5 )
+shape = SubResource( 28 )

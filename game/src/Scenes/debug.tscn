@@ -686,7 +686,7 @@ position = Vector2( -0.0648956, -2.25196 )
 polygon = PoolVector2Array( -11, 5, 11, 5, 0, -10 )
 
 [node name="Piece4" type="Area2D" parent="Table/Pieces"]
-position = Vector2( -35.7474, 5.09071 )
+position = Vector2( -30.6933, 3.9015 )
 monitoring = false
 monitorable = false
 script = ExtResource( 4 )
@@ -705,7 +705,7 @@ visible = false
 shape = SubResource( 21 )
 
 [node name="Piece5" type="Area2D" parent="Table/Pieces"]
-position = Vector2( -44.8627, 23.3507 )
+position = Vector2( -44.1194, 21.4182 )
 monitoring = false
 monitorable = false
 script = ExtResource( 4 )

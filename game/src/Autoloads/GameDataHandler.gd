@@ -49,7 +49,7 @@ func load_level_data():
 			"unlocks" : ["level2"]
 		},
 		"level2" : {
-			"item_num" : 6,
+			"item_num" : 5,
 			"items_got" : 0,
 			"unlocked" : false,
 			"completed" : false,
@@ -77,7 +77,7 @@ func load_level_data():
 			"unlocks" : ["level6"]
 		},
 		"level6" : {
-			"item_num" : 6,
+			"item_num" : 5,
 			"items_got" : 0,
 			"unlocked" : false,
 			"completed" : false,
@@ -91,7 +91,7 @@ func load_level_data():
 			"unlocks" : ["level8"]
 		}
 		,"level8" : {
-			"item_num" : 6,
+			"item_num" : 7,
 			"items_got" : 0,
 			"unlocked" : false,
 			"completed" : false,

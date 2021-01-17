@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/Scripts/Piece.gd" type="Script" id=1]
+[ext_resource path="res://assets/Sprites/pieces/4S-1.png" type="Texture" id=2]
+
+[node name="Bread" type="Area2D"]
+position = Vector2( 71.9897, 2.4975 )
+monitoring = false
+monitorable = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+relative_spaces = [ Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( 1, 1 ) ]
+moveable = false
+rotatable = false
+starts_placed_at = Vector2( 2, 2 )
+victory_requirement = true
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+offset = Vector2( 0, 4.5 )
+flip_h = true
+region_rect = Rect2( 41, 31, 17, 17 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -13, -1, -2, 11, 12.9837, 10.5814, 3, -1 )

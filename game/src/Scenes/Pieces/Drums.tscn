@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Scripts/Piece.gd" type="Script" id=1]
+[ext_resource path="res://assets/Sprites/pieces/6O-3.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=27]
+extents = Vector2( 8.17482, 13.7033 )
+
+[node name="Drums" type="Area2D"]
+position = Vector2( -27.1497, 11.2222 )
+monitoring = false
+monitorable = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+relative_spaces = [ Vector2( 1, 0 ), Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( 0, 2 ), Vector2( 1, 2 ) ]
+victory_requirement = true
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+offset = Vector2( 4.5, 8.718 )
+region_rect = Rect2( 41, 31, 17, 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 3.94443, 9.19146 )
+shape = SubResource( 27 )

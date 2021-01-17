@@ -1,0 +1,701 @@
+[gd_scene load_steps=52 format=2]
+
+[ext_resource path="res://assets/Sprites/overlay.png" type="Texture" id=1]
+[ext_resource path="res://src/Scripts/Table.gd" type="Script" id=2]
+[ext_resource path="res://assets/Sounds/level.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/Sprites/pieces/4S-1.png" type="Texture" id=4]
+[ext_resource path="res://assets/Sprites/mockup2.png" type="Texture" id=5]
+[ext_resource path="res://src/Scenes/Pieces/Bread.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Scripts/Level.gd" type="Script" id=7]
+[ext_resource path="res://assets/Sprites/pieces/6P-1.png" type="Texture" id=8]
+[ext_resource path="res://src/Scenes/Pieces/Axe.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/Sprites/pieces/4O-2.png" type="Texture" id=10]
+[ext_resource path="res://assets/Sprites/diorama-Sheet.png" type="Texture" id=11]
+[ext_resource path="res://assets/04B_03__.TTF" type="DynamicFontData" id=12]
+[ext_resource path="res://assets/palette_swap_darken.png" type="Texture" id=13]
+[ext_resource path="res://palette_changer.shader" type="Shader" id=14]
+[ext_resource path="res://assets/Sprites/menu_interface.png" type="Texture" id=15]
+[ext_resource path="res://assets/Sprites/pieces/4T-1.png" type="Texture" id=16]
+[ext_resource path="res://assets/Sprites/diorama_bubble.png" type="Texture" id=17]
+[ext_resource path="res://assets/Sounds/piece_fail.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/Sounds/piece_place.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/Sprites/end_level_screen_mockup.png" type="Texture" id=20]
+[ext_resource path="res://assets/Sounds/pack_button_click.wav" type="AudioStream" id=21]
+[ext_resource path="res://assets/Sounds/button_click.wav" type="AudioStream" id=22]
+[ext_resource path="res://src/Scenes/Pieces/Fish.tscn" type="PackedScene" id=23]
+[ext_resource path="res://src/Scenes/Pieces/Cup.tscn" type="PackedScene" id=24]
+[ext_resource path="res://src/Scenes/Pieces/Sausages.tscn" type="PackedScene" id=25]
+[ext_resource path="res://assets/Sprites/pieces/4I.png" type="Texture" id=26]
+[ext_resource path="res://src/Scenes/Pieces/Sack.tscn" type="PackedScene" id=27]
+[ext_resource path="res://assets/Sprites/pieces/3I.png" type="Texture" id=28]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 65, 28 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 28, 65, 28 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Idle"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.56, 1.44 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ SubResource( 1 ), SubResource( 2 ), SubResource( 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 12 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 15 )
+region = Rect2( 15, 0, 30, 14 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 15 )
+region = Rect2( 15, 30, 30, 14 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 15 )
+region = Rect2( 15, 15, 30, 14 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 3, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 29, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 16, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 15 )
+region = Rect2( 48, 3, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 15 )
+region = Rect2( 48, 29, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 15 )
+region = Rect2( 48, 16, 12, 12 )
+
+[sub_resource type="DynamicFont" id=14]
+size = 64
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=15]
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=16]
+size = 48
+font_data = ExtResource( 12 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 15 )
+region = Rect2( 63, 3, 17, 12 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 15 )
+region = Rect2( 63, 29, 17, 12 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 15 )
+region = Rect2( 63, 16, 17, 12 )
+
+[sub_resource type="ShaderMaterial" id=20]
+shader = ExtResource( 14 )
+shader_param/lookup_step = 0
+shader_param/lookup_palette = ExtResource( 13 )
+
+[sub_resource type="TileSet" id=21]
+0/name = "occupied"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 9, 9 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "allow"
+1/texture = ExtResource( 1 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 9, 0, 9, 9 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "deny"
+2/texture = ExtResource( 1 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 18, 0, 9, 9 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "fixed"
+3/texture = ExtResource( 1 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 27, 0, 9, 9 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+
+[sub_resource type="Animation" id=22]
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Control/PaletteSwapper:material:shader_param/lookup_step")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 5, 0, 0 ]
+}
+
+[sub_resource type="Animation" id=23]
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Control/PaletteSwapper:material:shader_param/lookup_step")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 5, 5 ]
+}
+
+[node name="Level" type="Node"]
+script = ExtResource( 7 )
+level_id = "level10"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Diorama" type="TextureRect" parent="UI/Control"]
+margin_left = 363.939
+margin_top = 23.7551
+margin_right = 883.939
+margin_bottom = 247.755
+texture = SubResource( 1 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Control/Diorama"]
+anims/Idle = SubResource( 3 )
+
+[node name="DioramaBubble" type="TextureRect" parent="UI/Control"]
+visible = false
+margin_left = 452.453
+margin_top = 27.5659
+margin_right = 732.453
+margin_bottom = 147.566
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/DioramaBubble"]
+margin_left = 39.0
+margin_right = 280.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "Piece1"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="PackButton" type="TextureButton" parent="UI/Control"]
+pause_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 982.698
+margin_top = 71.9646
+margin_right = -25.3016
+margin_bottom = -552.035
+focus_mode = 0
+disabled = true
+shortcut_in_tooltip = false
+enabled_focus_mode = 0
+texture_normal = SubResource( 5 )
+texture_pressed = SubResource( 6 )
+texture_hover = SubResource( 7 )
+texture_disabled = SubResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level Select" type="TextureButton" parent="UI/Control"]
+margin_left = 27.4984
+margin_top = 25.762
+margin_right = 123.498
+margin_bottom = 121.762
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = SubResource( 8 )
+texture_pressed = SubResource( 9 )
+texture_hover = SubResource( 10 )
+texture_disabled = SubResource( 10 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart" type="TextureButton" parent="UI/Control"]
+margin_left = 27.4984
+margin_top = 132.469
+margin_right = 123.498
+margin_bottom = 228.469
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = SubResource( 11 )
+texture_pressed = SubResource( 12 )
+texture_hover = SubResource( 13 )
+texture_disabled = SubResource( 13 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EndLevelScreen" type="Control" parent="UI/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="EndLevelBG" type="TextureRect" parent="UI/Control/EndLevelScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.54288
+margin_bottom = -1.54285
+mouse_filter = 2
+texture = ExtResource( 20 )
+expand = true
+
+[node name="CompleteText" type="Label" parent="UI/Control/EndLevelScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 172.806
+margin_top = 112.553
+margin_right = -179.194
+margin_bottom = -547.446
+custom_fonts/font = SubResource( 14 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "And the travels continue..."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemsGotten" type="Control" parent="UI/Control/EndLevelScreen"]
+margin_left = 158.0
+margin_top = 206.76
+margin_right = 1086.0
+margin_bottom = 518.76
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Cup" type="Control" parent="UI/Control/EndLevelScreen/ItemsGotten"]
+anchor_bottom = 1.0
+margin_left = 5.82523
+margin_right = 434.825
+margin_bottom = -218.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EndLevelScreen/ItemsGotten/Cup"]
+margin_left = 23.0
+margin_top = -3.0
+margin_right = 129.0
+margin_bottom = 97.0
+texture = ExtResource( 10 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen/ItemsGotten/Cup"]
+margin_left = 129.0
+margin_top = 20.0
+margin_right = 429.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 300, 48 )
+custom_fonts/font = SubResource( 15 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "This is where we part ways, huh? Well, drink then! I made the soup extra hearty!
+                    - Chef Somali"
+autowrap = true
+
+[node name="Sack" type="Control" parent="UI/Control/EndLevelScreen/ItemsGotten"]
+anchor_bottom = 1.0
+margin_left = 5.82523
+margin_top = 104.986
+margin_right = 434.825
+margin_bottom = -113.014
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EndLevelScreen/ItemsGotten/Sack"]
+margin_left = 22.6606
+margin_top = -3.01355
+margin_right = 127.661
+margin_bottom = 104.986
+texture = ExtResource( 16 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen/ItemsGotten/Sack"]
+margin_left = 129.0
+margin_top = 20.0
+margin_right = 429.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 300, 48 )
+custom_fonts/font = SubResource( 15 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "I have accepted my insatiable curiosity, and now shall open the sack again.
+             - Awakened Tribesman"
+autowrap = true
+
+[node name="Sausages" type="Control" parent="UI/Control/EndLevelScreen/ItemsGotten"]
+anchor_bottom = 1.0
+margin_left = 5.82523
+margin_top = 209.972
+margin_right = 434.825
+margin_bottom = -8.02802
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EndLevelScreen/ItemsGotten/Sausages"]
+margin_left = 22.6606
+margin_top = -3.01355
+margin_right = 127.661
+margin_bottom = 104.986
+texture = ExtResource( 26 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen/ItemsGotten/Sausages"]
+margin_left = 129.0
+margin_top = 20.0
+margin_right = 429.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 300, 48 )
+custom_fonts/font = SubResource( 15 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "This should provide a good snack for you on the way. Please take it.
+                 - Elder Ramuh"
+autowrap = true
+
+[node name="Fish" type="Control" parent="UI/Control/EndLevelScreen/ItemsGotten"]
+anchor_bottom = 1.0
+margin_left = 455.921
+margin_top = -3.7458
+margin_right = 884.921
+margin_bottom = -221.746
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EndLevelScreen/ItemsGotten/Fish"]
+margin_left = 13.0
+margin_top = -9.0
+margin_right = 140.0
+margin_bottom = 122.0
+texture = ExtResource( 28 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen/ItemsGotten/Fish"]
+margin_left = 140.0
+margin_top = 11.2209
+margin_right = 440.0
+margin_bottom = 122.221
+rect_min_size = Vector2( 300, 48 )
+custom_fonts/font = SubResource( 15 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "I'd offer you to take this fish with you, but it'll probably rot on the way... Let's eat it with the soup, then.
+                 - Fisherman Ramis"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Axe" type="Control" parent="UI/Control/EndLevelScreen/ItemsGotten"]
+anchor_bottom = 1.0
+margin_left = 461.165
+margin_top = 104.986
+margin_right = 890.165
+margin_bottom = -113.014
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EndLevelScreen/ItemsGotten/Axe"]
+margin_left = 18.2542
+margin_top = 9.48816
+margin_right = 123.254
+margin_bottom = 101.488
+texture = ExtResource( 8 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen/ItemsGotten/Axe"]
+margin_left = 129.0
+margin_top = 20.0
+margin_right = 429.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 300, 48 )
+custom_fonts/font = SubResource( 15 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "With all the axes thou hast provided, I have now ASCENDED.
+                  - Tribe Axemaster"
+autowrap = true
+
+[node name="Bread" type="Control" parent="UI/Control/EndLevelScreen/ItemsGotten"]
+anchor_bottom = 1.0
+margin_left = 461.165
+margin_top = 209.972
+margin_right = 890.165
+margin_bottom = -8.02811
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EndLevelScreen/ItemsGotten/Bread"]
+margin_left = 24.9966
+margin_top = 4.99326
+margin_right = 129.997
+margin_bottom = 96.9933
+texture = ExtResource( 4 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen/ItemsGotten/Bread"]
+margin_left = 140.237
+margin_top = 23.7458
+margin_right = 440.237
+margin_bottom = 77.7458
+rect_min_size = Vector2( 300, 48 )
+custom_fonts/font = SubResource( 15 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "Eat your fill of bread, traveller! It's the least we can offer for your help.
+                     - Tribeswoman"
+autowrap = true
+
+[node name="PieceNum" type="Label" parent="UI/Control/EndLevelScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 334.23
+margin_top = 514.92
+margin_right = -381.77
+margin_bottom = -145.08
+custom_fonts/font = SubResource( 16 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "Pieces: x out of x"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Retry" type="TextureButton" parent="UI/Control/EndLevelScreen"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 412.421
+margin_top = 589.946
+margin_right = -739.579
+margin_bottom = -50.0536
+texture_normal = SubResource( 11 )
+texture_pressed = SubResource( 12 )
+texture_hover = SubResource( 13 )
+texture_disabled = SubResource( 13 )
+expand = true
+stretch_mode = 5
+
+[node name="Continue" type="TextureButton" parent="UI/Control/EndLevelScreen"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 662.026
+margin_top = 589.946
+margin_right = -449.974
+margin_bottom = -50.0536
+texture_normal = SubResource( 17 )
+texture_pressed = SubResource( 18 )
+texture_hover = SubResource( 19 )
+expand = true
+
+[node name="PaletteSwapper" type="ColorRect" parent="UI/Control"]
+material = SubResource( 20 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="UI/Control"]
+stream = ExtResource( 22 )
+volume_db = -30.0
+bus = "SFX"
+
+[node name="PackButtonClick" type="AudioStreamPlayer" parent="UI/Control"]
+stream = ExtResource( 21 )
+volume_db = -15.0
+bus = "SFX"
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TableBG" type="TextureRect" parent="BG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Table" type="TileMap" parent="."]
+pause_mode = 1
+position = Vector2( 440, 336 )
+scale = Vector2( 8, 8 )
+tile_set = SubResource( 21 )
+cell_size = Vector2( 9, 9 )
+cell_quadrant_size = 1
+format = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Pieces" type="Node2D" parent="Table"]
+
+[node name="Cup" parent="Table/Pieces" instance=ExtResource( 24 )]
+position = Vector2( -39.9407, 33.6905 )
+
+[node name="Sack" parent="Table/Pieces" instance=ExtResource( 27 )]
+
+[node name="Sausages" parent="Table/Pieces" instance=ExtResource( 25 )]
+position = Vector2( -44.6142, 14.8491 )
+
+[node name="Fish" parent="Table/Pieces" instance=ExtResource( 23 )]
+
+[node name="Axe" parent="Table/Pieces" instance=ExtResource( 9 )]
+position = Vector2( -25.4553, 12.8679 )
+
+[node name="Bread" parent="Table/Pieces" instance=ExtResource( 6 )]
+moveable = true
+rotatable = true
+starts_placed_at = Vector2( -1, -1 )
+
+[node name="PiecePlace" type="AudioStreamPlayer" parent="Table"]
+stream = ExtResource( 19 )
+volume_db = 2.0
+bus = "SFX"
+
+[node name="PieceFail" type="AudioStreamPlayer" parent="Table"]
+stream = ExtResource( 18 )
+volume_db = -7.0
+bus = "SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "TransitionIn"
+anims/TransitionIn = SubResource( 22 )
+anims/TransitionOut = SubResource( 23 )
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+bus = "Music"
+[connection signal="pressed" from="UI/Control/PackButton" to="." method="_on_PackButton_pressed"]
+[connection signal="pressed" from="UI/Control/Level Select" to="." method="_on_Level_Select_pressed"]
+[connection signal="pressed" from="UI/Control/Restart" to="." method="restart_level"]
+[connection signal="pressed" from="UI/Control/EndLevelScreen/Retry" to="." method="restart_level"]
+[connection signal="pressed" from="UI/Control/EndLevelScreen/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="table_updated" from="Table" to="." method="_on_Table_table_updated"]

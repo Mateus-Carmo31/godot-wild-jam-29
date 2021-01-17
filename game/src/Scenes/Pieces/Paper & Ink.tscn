@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Scripts/Piece.gd" type="Script" id=1]
+[ext_resource path="res://assets/Sprites/pieces/4T-2.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=25]
+extents = Vector2( 12.8103, 8.70169 )
+
+[node name="Paper & Ink" type="Area2D"]
+position = Vector2( 77.4579, 41.0475 )
+monitoring = false
+monitorable = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+relative_spaces = [ Vector2( -1, 0 ), Vector2( 1, 0 ), Vector2( 0, -1 ) ]
+victory_requirement = true
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+offset = Vector2( 0, -4.5 )
+flip_h = true
+region_rect = Rect2( 41, 31, 17, 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -4.098 )
+shape = SubResource( 25 )

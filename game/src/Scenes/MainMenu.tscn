@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://palette_changer.shader" type="Shader" id=1]
 [ext_resource path="res://assets/palette_swap_darken.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/Sprites/menu_interface.png" type="Texture" id=4]
 [ext_resource path="res://assets/04B_03__.TTF" type="DynamicFontData" id=5]
 [ext_resource path="res://src/Scripts/MainMenu.gd" type="Script" id=6]
+[ext_resource path="res://menu_interface_2.png" type="Texture" id=7]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -36,54 +37,58 @@ shader_param/lookup_step = 3
 shader_param/lookup_palette = ExtResource( 2 )
 
 [sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 4 )
-region = Rect2( 128, 0, 30, 14 )
+atlas = ExtResource( 7 )
+region = Rect2( 0, 46, 58, 9 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 4 )
-region = Rect2( 128, 30, 30, 14 )
+region = Rect2( 128, 0, 30, 14 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 4 )
-region = Rect2( 128, 15, 30, 14 )
+region = Rect2( 128, 30, 30, 14 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 4 )
-region = Rect2( 113, 3, 12, 12 )
+region = Rect2( 128, 15, 30, 14 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 4 )
-region = Rect2( 113, 29, 12, 12 )
+region = Rect2( 113, 3, 12, 12 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 4 )
-region = Rect2( 113, 16, 12, 12 )
+region = Rect2( 113, 29, 12, 12 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 4 )
-region = Rect2( 98, 3, 12, 12 )
+region = Rect2( 113, 16, 12, 12 )
 
 [sub_resource type="AtlasTexture" id=11]
 atlas = ExtResource( 4 )
-region = Rect2( 98, 29, 12, 12 )
+region = Rect2( 98, 3, 12, 12 )
 
 [sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 4 )
+region = Rect2( 98, 29, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 4 )
 region = Rect2( 98, 16, 12, 12 )
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=14]
 size = 48
 font_data = ExtResource( 5 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 3, 12, 12 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 29, 12, 12 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 4 )
 region = Rect2( 0, 16, 12, 12 )
 
@@ -123,6 +128,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="TextureRect" type="TextureRect" parent="Buttons"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 149.84
+margin_top = 146.273
+margin_right = -166.16
+margin_bottom = -444.727
+texture = SubResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Play" type="TextureButton" parent="Buttons"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -130,9 +148,9 @@ margin_left = 460.5
 margin_top = 401.809
 margin_right = -460.5
 margin_bottom = -181.191
-texture_normal = SubResource( 4 )
-texture_pressed = SubResource( 5 )
-texture_hover = SubResource( 6 )
+texture_normal = SubResource( 5 )
+texture_pressed = SubResource( 6 )
+texture_hover = SubResource( 7 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -145,9 +163,9 @@ margin_left = 979.333
 margin_top = 629.188
 margin_right = -184.667
 margin_bottom = -22.8115
-texture_normal = SubResource( 7 )
-texture_pressed = SubResource( 8 )
-texture_hover = SubResource( 9 )
+texture_normal = SubResource( 8 )
+texture_pressed = SubResource( 9 )
+texture_hover = SubResource( 10 )
 expand = true
 
 [node name="Exit" type="TextureButton" parent="Buttons"]
@@ -157,9 +175,9 @@ margin_left = 1096.47
 margin_top = 629.188
 margin_right = -67.53
 margin_bottom = -22.8115
-texture_normal = SubResource( 10 )
-texture_pressed = SubResource( 11 )
-texture_hover = SubResource( 12 )
+texture_normal = SubResource( 11 )
+texture_pressed = SubResource( 12 )
+texture_hover = SubResource( 13 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -181,7 +199,7 @@ margin_left = 227.0
 margin_top = 99.0615
 margin_right = -226.0
 margin_bottom = -537.938
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
 custom_colors/font_color = Color( 0.713726, 0.631373, 0.431373, 1 )
 text = "A Game by Mateus Carmo and Pedro Braz"
 align = 1
@@ -194,7 +212,7 @@ margin_left = 227.0
 margin_top = 294.0
 margin_right = -226.0
 margin_bottom = -88.0
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
 custom_colors/font_color = Color( 0.713726, 0.631373, 0.431373, 1 )
 text = "Tools/Sources used:
 
@@ -215,13 +233,15 @@ margin_left = 979.333
 margin_top = 629.188
 margin_right = -184.667
 margin_bottom = -22.8115
-texture_normal = SubResource( 14 )
-texture_pressed = SubResource( 15 )
-texture_hover = SubResource( 16 )
+texture_normal = SubResource( 15 )
+texture_pressed = SubResource( 16 )
+texture_hover = SubResource( 17 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 [connection signal="pressed" from="Buttons/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="Buttons/Credits" to="." method="show_credits"]
 [connection signal="pressed" from="Buttons/Exit" to="." method="_on_Exit_pressed"]

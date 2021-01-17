@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Scripts/Piece.gd" type="Script" id=1]
+[ext_resource path="res://assets/Sprites/pieces/5P-2.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=26]
+extents = Vector2( 10.517, 8.19005 )
+
+[node name="Boot" type="Area2D"]
+position = Vector2( 71.6523, 4.55256 )
+monitoring = false
+monitorable = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+relative_spaces = [ Vector2( -1, 0 ), Vector2( -1, 1 ), Vector2( 0, 1 ), Vector2( 1, 0 ) ]
+victory_requirement = true
+
+[node name="Sprite" type="Sprite" parent="."]
+rotation = -1.5708
+texture = ExtResource( 2 )
+offset = Vector2( -4.5, 2 )
+flip_h = true
+flip_v = true
+region_rect = Rect2( 41, 31, 17, 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2.5625, 4.2575 )
+shape = SubResource( 26 )
