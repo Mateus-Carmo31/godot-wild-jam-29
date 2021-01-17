@@ -94,67 +94,67 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="level0" parent="Buttons" instance=ExtResource( 3 )]
+[node name="level1" parent="Buttons" instance=ExtResource( 3 )]
 margin_left = 125.082
 margin_top = 500.884
 margin_right = -1076.92
 margin_bottom = -202.116
 
-[node name="level1" parent="Buttons" instance=ExtResource( 3 )]
+[node name="level2" parent="Buttons" instance=ExtResource( 3 )]
 margin_left = 227.771
 margin_top = 411.976
 margin_right = -974.229
 margin_bottom = -291.024
 
-[node name="level2" parent="Buttons" instance=ExtResource( 3 )]
+[node name="level3" parent="Buttons" instance=ExtResource( 3 )]
 margin_left = 411.405
 margin_top = 309.293
 margin_right = -790.595
 margin_bottom = -393.707
 
-[node name="level3" parent="Buttons" instance=ExtResource( 3 )]
+[node name="level4" parent="Buttons" instance=ExtResource( 3 )]
 margin_left = 205.193
 margin_top = 191.856
 margin_right = -996.807
 margin_bottom = -511.144
 
-[node name="level4" parent="Buttons" instance=ExtResource( 3 )]
+[node name="level5" parent="Buttons" instance=ExtResource( 3 )]
 margin_left = 581.159
 margin_top = 131.457
 margin_right = -620.841
 margin_bottom = -571.542
 
-[node name="level5" parent="Buttons" instance=ExtResource( 3 )]
+[node name="level6" parent="Buttons" instance=ExtResource( 3 )]
 margin_left = 930.807
 margin_top = 286.143
 margin_right = -271.193
 margin_bottom = -416.857
 
-[node name="level6" parent="Buttons" instance=ExtResource( 3 )]
+[node name="level7" parent="Buttons" instance=ExtResource( 3 )]
 margin_left = 738.724
 margin_top = 341.77
 margin_right = -463.276
 margin_bottom = -361.23
 
-[node name="level7" parent="Buttons" instance=ExtResource( 3 )]
+[node name="level8" parent="Buttons" instance=ExtResource( 3 )]
 margin_left = 585.771
 margin_top = 469.127
 margin_right = -616.229
 margin_bottom = -233.873
 
-[node name="level8" parent="Buttons" instance=ExtResource( 3 )]
+[node name="level9" parent="Buttons" instance=ExtResource( 3 )]
 margin_left = 726.839
 margin_top = 553.627
 margin_right = -475.161
 margin_bottom = -149.373
 
-[node name="level9" parent="Buttons" instance=ExtResource( 3 )]
+[node name="level10" parent="Buttons" instance=ExtResource( 3 )]
 margin_left = 984.508
 margin_top = 464.342
 margin_right = -217.492
 margin_bottom = -238.658
 
-[node name="level10" parent="Buttons" instance=ExtResource( 3 )]
+[node name="level11" parent="Buttons" instance=ExtResource( 3 )]
 margin_left = 1098.44
 margin_top = 559.751
 margin_right = -103.562
@@ -193,4 +193,5 @@ bus = "Music"
 
 [node name="LevelSelectedSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+volume_db = -15.0
 bus = "SFX"

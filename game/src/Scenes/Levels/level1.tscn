@@ -1,0 +1,721 @@
+[gd_scene load_steps=45 format=2]
+
+[ext_resource path="res://assets/Sprites/overlay.png" type="Texture" id=1]
+[ext_resource path="res://src/Scripts/Table.gd" type="Script" id=2]
+[ext_resource path="res://src/Scripts/Piece.gd" type="Script" id=4]
+[ext_resource path="res://assets/Sprites/mockup2.png" type="Texture" id=5]
+[ext_resource path="res://assets/Sprites/pieces/6O-1.png" type="Texture" id=6]
+[ext_resource path="res://src/Scripts/Level.gd" type="Script" id=7]
+[ext_resource path="res://assets/Sprites/pieces/6O-2.png" type="Texture" id=8]
+[ext_resource path="res://assets/Sprites/pieces/5L.png" type="Texture" id=9]
+[ext_resource path="res://assets/Sprites/pieces/4T-1.png" type="Texture" id=10]
+[ext_resource path="res://assets/04B_03__.TTF" type="DynamicFontData" id=12]
+[ext_resource path="res://assets/palette_swap_darken.png" type="Texture" id=13]
+[ext_resource path="res://palette_changer.shader" type="Shader" id=14]
+[ext_resource path="res://assets/Sprites/menu_interface.png" type="Texture" id=15]
+[ext_resource path="res://assets/Sprites/diorama.png" type="Texture" id=16]
+[ext_resource path="res://assets/Sprites/diorama_bubble.png" type="Texture" id=17]
+[ext_resource path="res://assets/Sounds/piece_fail.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/Sounds/piece_place.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/Sprites/end_level_screen_mockup.png" type="Texture" id=20]
+[ext_resource path="res://assets/Sounds/pack_button_click.wav" type="AudioStream" id=21]
+[ext_resource path="res://assets/Sounds/button_click.wav" type="AudioStream" id=22]
+[ext_resource path="res://assets/Sprites/pieces/4S-1.png" type="Texture" id=23]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 12 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 15 )
+region = Rect2( 15, 0, 30, 14 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 15 )
+region = Rect2( 15, 30, 30, 14 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 15 )
+region = Rect2( 15, 15, 30, 14 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 3, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 29, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 15 )
+region = Rect2( 0, 16, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 15 )
+region = Rect2( 48, 3, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 15 )
+region = Rect2( 48, 29, 12, 12 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 15 )
+region = Rect2( 48, 16, 12, 12 )
+
+[sub_resource type="DynamicFont" id=11]
+size = 64
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=12]
+font_data = ExtResource( 12 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 48
+font_data = ExtResource( 12 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 15 )
+region = Rect2( 63, 3, 17, 12 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 15 )
+region = Rect2( 63, 29, 17, 12 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 15 )
+region = Rect2( 63, 16, 17, 12 )
+
+[sub_resource type="ShaderMaterial" id=17]
+shader = ExtResource( 14 )
+shader_param/lookup_step = 0
+shader_param/lookup_palette = ExtResource( 13 )
+
+[sub_resource type="TileSet" id=18]
+0/name = "occupied"
+0/texture = ExtResource( 1 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 9, 9 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "allow"
+1/texture = ExtResource( 1 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 9, 0, 9, 9 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "deny"
+2/texture = ExtResource( 1 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 18, 0, 9, 9 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+3/name = "fixed"
+3/texture = ExtResource( 1 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 27, 0, 9, 9 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0
+
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 7.82391, 12.1138 )
+
+[sub_resource type="RectangleShape2D" id=23]
+extents = Vector2( 16.6652, 5.45544 )
+
+[sub_resource type="RectangleShape2D" id=24]
+extents = Vector2( 9.73727, 8.12248 )
+
+[sub_resource type="Animation" id=20]
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Control/PaletteSwapper:material:shader_param/lookup_step")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 5, 0, 0 ]
+}
+
+[sub_resource type="Animation" id=21]
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/Control/PaletteSwapper:material:shader_param/lookup_step")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0, 5, 5 ]
+}
+
+[node name="Level" type="Node"]
+script = ExtResource( 7 )
+level_id = "level1"
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Diorama" type="TextureRect" parent="UI/Control"]
+margin_left = 363.939
+margin_top = 23.7551
+margin_right = 883.939
+margin_bottom = 247.755
+texture = ExtResource( 16 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DioramaBubble" type="TextureRect" parent="UI/Control"]
+visible = false
+margin_left = 452.453
+margin_top = 27.5659
+margin_right = 732.453
+margin_bottom = 147.566
+texture = ExtResource( 17 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/DioramaBubble"]
+margin_left = 39.0
+margin_right = 280.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "Piece1"
+align = 1
+valign = 1
+clip_text = true
+
+[node name="PackButton" type="TextureButton" parent="UI/Control"]
+pause_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 982.698
+margin_top = 71.9646
+margin_right = -25.3016
+margin_bottom = -552.035
+focus_mode = 0
+disabled = true
+shortcut_in_tooltip = false
+enabled_focus_mode = 0
+texture_normal = SubResource( 2 )
+texture_pressed = SubResource( 3 )
+texture_hover = SubResource( 4 )
+texture_disabled = SubResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level Select" type="TextureButton" parent="UI/Control"]
+margin_left = 27.4984
+margin_top = 25.762
+margin_right = 123.498
+margin_bottom = 121.762
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = SubResource( 5 )
+texture_pressed = SubResource( 6 )
+texture_hover = SubResource( 7 )
+texture_disabled = SubResource( 7 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Restart" type="TextureButton" parent="UI/Control"]
+margin_left = 27.4984
+margin_top = 132.469
+margin_right = 123.498
+margin_bottom = 228.469
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = SubResource( 8 )
+texture_pressed = SubResource( 9 )
+texture_hover = SubResource( 10 )
+texture_disabled = SubResource( 10 )
+expand = true
+stretch_mode = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EndLevelScreen" type="Control" parent="UI/Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="EndLevelBG" type="TextureRect" parent="UI/Control/EndLevelScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.793701
+margin_bottom = -0.793701
+mouse_filter = 2
+texture = ExtResource( 20 )
+expand = true
+
+[node name="CompleteText" type="Label" parent="UI/Control/EndLevelScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 172.806
+margin_top = 112.553
+margin_right = -179.194
+margin_bottom = -547.446
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "And the travels continue..."
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ItemsGotten" type="Control" parent="UI/Control/EndLevelScreen"]
+margin_left = 158.0
+margin_top = 206.76
+margin_right = 1086.0
+margin_bottom = 518.76
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Bread" type="Control" parent="UI/Control/EndLevelScreen/ItemsGotten"]
+anchor_bottom = 1.0
+margin_left = 1.31282
+margin_top = -3.39284
+margin_right = 430.313
+margin_bottom = -221.393
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EndLevelScreen/ItemsGotten/Bread"]
+margin_left = -1.0
+margin_top = -5.0
+margin_right = 103.0
+margin_bottom = 102.0
+texture = ExtResource( 23 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen/ItemsGotten/Bread"]
+margin_left = 129.0
+margin_top = 20.0
+margin_right = 429.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 300, 48 )
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "Ah! Some bread! This will go great with my soup!
+                     - Chef Somari"
+autowrap = true
+
+[node name="Arrows" type="Control" parent="UI/Control/EndLevelScreen/ItemsGotten"]
+anchor_bottom = 1.0
+margin_left = 1.31282
+margin_top = 91.168
+margin_right = 430.313
+margin_bottom = -126.832
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EndLevelScreen/ItemsGotten/Arrows"]
+margin_left = -1.0
+margin_top = -5.0
+margin_right = 103.0
+margin_bottom = 102.0
+texture = ExtResource( 6 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen/ItemsGotten/Arrows"]
+margin_left = 129.0
+margin_top = 20.0
+margin_right = 429.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 300, 48 )
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "I might be able to use this, but I'd need a bow...
+                      - Akaris"
+autowrap = true
+
+[node name="Bow" type="Control" parent="UI/Control/EndLevelScreen/ItemsGotten"]
+anchor_bottom = 1.0
+margin_left = 1.31282
+margin_top = 193.168
+margin_right = 430.313
+margin_bottom = -24.8324
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EndLevelScreen/ItemsGotten/Bow"]
+margin_left = -1.0
+margin_top = -5.0
+margin_right = 103.0
+margin_bottom = 102.0
+texture = ExtResource( 8 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen/ItemsGotten/Bow"]
+margin_left = 129.0
+margin_top = 20.0
+margin_right = 429.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 300, 48 )
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "Oh.
+
+                        - Akaris"
+autowrap = true
+
+[node name="Cane" type="Control" parent="UI/Control/EndLevelScreen/ItemsGotten"]
+anchor_bottom = 1.0
+margin_left = 461.165
+margin_top = 40.2612
+margin_right = 890.165
+margin_bottom = -177.739
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EndLevelScreen/ItemsGotten/Cane"]
+margin_left = -1.0
+margin_top = -5.0
+margin_right = 103.0
+margin_bottom = 102.0
+texture = ExtResource( 9 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen/ItemsGotten/Cane"]
+margin_left = 129.0
+margin_top = 20.0
+margin_right = 429.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 300, 48 )
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "Good thing you bought this, lad. I just broke my old one.
+                   - Elder Ramuh"
+autowrap = true
+
+[node name="Sack" type="Control" parent="UI/Control/EndLevelScreen/ItemsGotten"]
+anchor_bottom = 1.0
+margin_left = 461.165
+margin_top = 154.822
+margin_right = 890.165
+margin_bottom = -63.1784
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control/EndLevelScreen/ItemsGotten/Sack"]
+margin_left = -1.0
+margin_top = -5.0
+margin_right = 103.0
+margin_bottom = 102.0
+texture = ExtResource( 10 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/Control/EndLevelScreen/ItemsGotten/Sack"]
+margin_left = 129.0
+margin_top = 20.0
+margin_right = 429.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 300, 48 )
+custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "Oooh, I wonder what's inside!
+
+   - Tribe member moments before disaster"
+autowrap = true
+
+[node name="PieceNum" type="Label" parent="UI/Control/EndLevelScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 334.23
+margin_top = 514.92
+margin_right = -381.77
+margin_bottom = -145.08
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+text = "Pieces: x out of x"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Retry" type="TextureButton" parent="UI/Control/EndLevelScreen"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 412.421
+margin_top = 589.946
+margin_right = -739.579
+margin_bottom = -50.0536
+texture_normal = SubResource( 8 )
+texture_pressed = SubResource( 9 )
+texture_hover = SubResource( 10 )
+texture_disabled = SubResource( 10 )
+expand = true
+stretch_mode = 5
+
+[node name="Continue" type="TextureButton" parent="UI/Control/EndLevelScreen"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 662.026
+margin_top = 589.946
+margin_right = -449.974
+margin_bottom = -50.0536
+texture_normal = SubResource( 14 )
+texture_pressed = SubResource( 15 )
+texture_hover = SubResource( 16 )
+expand = true
+
+[node name="PaletteSwapper" type="ColorRect" parent="UI/Control"]
+material = SubResource( 17 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="UI/Control"]
+stream = ExtResource( 22 )
+volume_db = -15.0
+bus = "SFX"
+
+[node name="PackButtonClick" type="AudioStreamPlayer" parent="UI/Control"]
+stream = ExtResource( 21 )
+volume_db = -15.0
+bus = "SFX"
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TableBG" type="TextureRect" parent="BG"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Table" type="TileMap" parent="."]
+pause_mode = 1
+position = Vector2( 440, 336 )
+scale = Vector2( 8, 8 )
+tile_set = SubResource( 18 )
+cell_size = Vector2( 9, 9 )
+cell_quadrant_size = 1
+format = 1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Pieces" type="Node2D" parent="Table"]
+
+[node name="Bread" type="Area2D" parent="Table/Pieces"]
+position = Vector2( 71.9897, 2.4975 )
+monitoring = false
+monitorable = false
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+relative_spaces = [ Vector2( -1, 0 ), Vector2( 0, 1 ), Vector2( 1, 1 ) ]
+moveable = false
+rotatable = false
+starts_placed_at = Vector2( 2, 2 )
+victory_requirement = true
+
+[node name="Sprite" type="Sprite" parent="Table/Pieces/Bread"]
+texture = ExtResource( 23 )
+offset = Vector2( 0, 4.5 )
+flip_h = true
+region_rect = Rect2( 41, 31, 17, 17 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Table/Pieces/Bread"]
+polygon = PoolVector2Array( -13, -1, -2, 11, 12.9837, 10.5814, 3, -1 )
+
+[node name="Arrows" type="Area2D" parent="Table/Pieces"]
+position = Vector2( -25.521, 3.69328 )
+monitoring = false
+monitorable = false
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+relative_spaces = [ Vector2( 1, 0 ), Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( 0, 2 ), Vector2( 1, 2 ) ]
+victory_requirement = true
+
+[node name="Sprite" type="Sprite" parent="Table/Pieces/Arrows"]
+texture = ExtResource( 6 )
+offset = Vector2( 4.5, 9 )
+region_rect = Rect2( 41, 31, 17, 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Pieces/Arrows"]
+position = Vector2( 4.5, 9 )
+shape = SubResource( 22 )
+
+[node name="Bow" type="Area2D" parent="Table/Pieces"]
+position = Vector2( -44.0626, 3.69328 )
+monitoring = false
+monitorable = false
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+relative_spaces = [ Vector2( 1, 0 ), Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( 0, 2 ), Vector2( 1, 2 ) ]
+victory_requirement = true
+
+[node name="Sprite" type="Sprite" parent="Table/Pieces/Bow"]
+position = Vector2( 0.0936432, 0 )
+texture = ExtResource( 8 )
+offset = Vector2( 4.5, 9 )
+region_rect = Rect2( 41, 31, 17, 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Pieces/Bow"]
+position = Vector2( 4.5, 9 )
+shape = SubResource( 22 )
+
+[node name="Cane" type="Area2D" parent="Table/Pieces"]
+position = Vector2( -35.9685, 30.5709 )
+monitoring = false
+monitorable = false
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+relative_spaces = [ Vector2( -1, 0 ), Vector2( -1, 1 ), Vector2( 1, 0 ), Vector2( 2, 0 ) ]
+victory_requirement = true
+
+[node name="Sprite" type="Sprite" parent="Table/Pieces/Cane"]
+position = Vector2( 0.0936432, 0 )
+rotation = -1.5708
+texture = ExtResource( 9 )
+offset = Vector2( -4.5, 4.5 )
+region_rect = Rect2( 41, 31, 17, 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Pieces/Cane"]
+position = Vector2( 5.253, 4.5 )
+shape = SubResource( 23 )
+
+[node name="Sack" type="Area2D" parent="Table/Pieces"]
+position = Vector2( 73.2323, 25.3283 )
+monitoring = false
+monitorable = false
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+relative_spaces = [ Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( -1, 1 ) ]
+victory_requirement = true
+
+[node name="Sprite" type="Sprite" parent="Table/Pieces/Sack"]
+position = Vector2( 0.0936432, 0 )
+texture = ExtResource( 10 )
+offset = Vector2( 0, 4.5 )
+region_rect = Rect2( 41, 31, 17, 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Pieces/Sack"]
+position = Vector2( 0, 5 )
+shape = SubResource( 24 )
+
+[node name="PiecePlace" type="AudioStreamPlayer" parent="Table"]
+stream = ExtResource( 19 )
+volume_db = 2.0
+bus = "SFX"
+
+[node name="PieceFail" type="AudioStreamPlayer" parent="Table"]
+stream = ExtResource( 18 )
+volume_db = -7.0
+bus = "SFX"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "TransitionIn"
+anims/TransitionIn = SubResource( 20 )
+anims/TransitionOut = SubResource( 21 )
+[connection signal="pressed" from="UI/Control/PackButton" to="." method="_on_PackButton_pressed"]
+[connection signal="pressed" from="UI/Control/Level Select" to="." method="_on_Level_Select_pressed"]
+[connection signal="pressed" from="UI/Control/Restart" to="." method="restart_level"]
+[connection signal="pressed" from="UI/Control/EndLevelScreen/Retry" to="." method="restart_level"]
+[connection signal="pressed" from="UI/Control/EndLevelScreen/Continue" to="." method="_on_Continue_pressed"]
+[connection signal="table_updated" from="Table" to="." method="_on_Table_table_updated"]

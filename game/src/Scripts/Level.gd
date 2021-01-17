@@ -86,7 +86,6 @@ func restart_level():
 	$UI/Control/ButtonClick.play()
 	anim_player.play("TransitionOut")
 	yield(anim_player, "animation_finished")
-	yield(anim_player, "animation_finished")
 	get_tree().change_scene(LevelScenes.get_level_by_id(level_id))
 	print("Restarted level.")
 

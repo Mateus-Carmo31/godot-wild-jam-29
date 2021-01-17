@@ -41,14 +41,77 @@ func save_level_data(_level_data = null):
 # TODO: Implement actual saving in a file
 func load_level_data():
 	var dummy_data = {
-		"level0" : {
-			"item_num" : 6,
+		"level1" : {
+			"item_num" : 5,
 			"items_got" : 0,
 			"unlocked" : true,
 			"completed" : false,
-			"unlocks" : ["level1"]
+			"unlocks" : ["level2"]
 		},
-		"level1" : {
+		"level2" : {
+			"item_num" : 6,
+			"items_got" : 0,
+			"unlocked" : false,
+			"completed" : false,
+			"unlocks" : ["level3"]
+		},
+		"level3" : {
+			"item_num" : 6,
+			"items_got" : 0,
+			"unlocked" : false,
+			"completed" : false,
+			"unlocks" : ["level4"]
+		},
+		"level4" : {
+			"item_num" : 6,
+			"items_got" : 0,
+			"unlocked" : false,
+			"completed" : false,
+			"unlocks" : ["level5"]
+		},
+		"level5" : {
+			"item_num" : 6,
+			"items_got" : 0,
+			"unlocked" : false,
+			"completed" : false,
+			"unlocks" : ["level6"]
+		},
+		"level6" : {
+			"item_num" : 6,
+			"items_got" : 0,
+			"unlocked" : false,
+			"completed" : false,
+			"unlocks" : ["level7"]
+		},
+		"level7" : {
+			"item_num" : 6,
+			"items_got" : 0,
+			"unlocked" : false,
+			"completed" : false,
+			"unlocks" : ["level8"]
+		}
+		,"level8" : {
+			"item_num" : 6,
+			"items_got" : 0,
+			"unlocked" : false,
+			"completed" : false,
+			"unlocks" : ["level9"]
+		},
+		"level9" : {
+			"item_num" : 6,
+			"items_got" : 0,
+			"unlocked" : false,
+			"completed" : false,
+			"unlocks" : ["level10"]
+		},
+		"level10" : {
+			"item_num" : 6,
+			"items_got" : 0,
+			"unlocked" : false,
+			"completed" : false,
+			"unlocks" : ["level11"]
+		},
+		"level11" : {
 			"item_num" : 6,
 			"items_got" : 0,
 			"unlocked" : false,
