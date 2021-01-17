@@ -10,7 +10,7 @@ var current_piece : Piece
 signal table_updated(level_completed)
 
 func _ready():
-	for child in get_children():
+	for child in $Pieces.get_children():
 		if child is Piece:
 			child.connect("selected", self, "select_piece", [child])
 			
@@ -81,11 +81,13 @@ func deselect_piece():
 		
 		if(can_place_piece() == true):
 			current_piece.placed = true
+			$PiecePlace.play()
 		else:
 			current_piece.position = current_piece.original_position
 			current_piece.relative_spaces = current_piece.original_relatives.duplicate()
 			current_piece.rotation = 0
 			current_piece.placed = false
+			$PieceFail.play()
 		
 		current_piece = null
 		update_table()
@@ -95,7 +97,7 @@ func update_table():
 	
 	var occupied_slots = []
 	
-	for piece in get_children():
+	for piece in $Pieces.get_children():
 		if piece.placed:
 			var pos = world_to_map(piece.position.round())
 			occupied_slots.append(pos)
@@ -130,7 +132,7 @@ func get_piece_space():
 func check_completion():
 	
 	var required_pieces_placed = true
-	for child in get_children():
+	for child in $Pieces.get_children():
 		if child.victory_requirement == true and child.placed == false:
 			required_pieces_placed = false
 			break

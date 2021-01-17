@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Scripts/LevelSelect.gd" type="Script" id=1]
 [ext_resource path="res://assets/palette_swap_darken.png" type="Texture" id=2]
 [ext_resource path="res://src/Scenes/LevelSelectButton.tscn" type="PackedScene" id=3]
 [ext_resource path="res://palette_changer.shader" type="Shader" id=4]
+[ext_resource path="res://assets/Sprites/map.png" type="Texture" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -50,15 +51,96 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="BG" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.243137, 0.0784314, 0.121569, 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Map" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource( 5 )
+expand = true
+
 [node name="Buttons" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -0.280579
+margin_bottom = -0.280579
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="level0" parent="Buttons" instance=ExtResource( 3 )]
-margin_left = 138.25
-margin_top = 391.884
-margin_right = -1063.75
-margin_bottom = -311.116
+margin_left = 125.082
+margin_top = 500.884
+margin_right = -1076.92
+margin_bottom = -202.116
+
+[node name="level1" parent="Buttons" instance=ExtResource( 3 )]
+margin_left = 227.771
+margin_top = 411.976
+margin_right = -974.229
+margin_bottom = -291.024
+
+[node name="level2" parent="Buttons" instance=ExtResource( 3 )]
+margin_left = 411.405
+margin_top = 309.293
+margin_right = -790.595
+margin_bottom = -393.707
+
+[node name="level3" parent="Buttons" instance=ExtResource( 3 )]
+margin_left = 205.193
+margin_top = 191.856
+margin_right = -996.807
+margin_bottom = -511.144
+
+[node name="level4" parent="Buttons" instance=ExtResource( 3 )]
+margin_left = 581.159
+margin_top = 131.457
+margin_right = -620.841
+margin_bottom = -571.542
+
+[node name="level5" parent="Buttons" instance=ExtResource( 3 )]
+margin_left = 930.807
+margin_top = 286.143
+margin_right = -271.193
+margin_bottom = -416.857
+
+[node name="level6" parent="Buttons" instance=ExtResource( 3 )]
+margin_left = 738.724
+margin_top = 341.77
+margin_right = -463.276
+margin_bottom = -361.23
+
+[node name="level7" parent="Buttons" instance=ExtResource( 3 )]
+margin_left = 585.771
+margin_top = 469.127
+margin_right = -616.229
+margin_bottom = -233.873
+
+[node name="level8" parent="Buttons" instance=ExtResource( 3 )]
+margin_left = 726.839
+margin_top = 553.627
+margin_right = -475.161
+margin_bottom = -149.373
+
+[node name="level9" parent="Buttons" instance=ExtResource( 3 )]
+margin_left = 984.508
+margin_top = 464.342
+margin_right = -217.492
+margin_bottom = -238.658
+
+[node name="level10" parent="Buttons" instance=ExtResource( 3 )]
+margin_left = 1098.44
+margin_top = 559.751
+margin_right = -103.562
+margin_bottom = -143.248
 
 [node name="PaletteChanger" type="ColorRect" parent="."]
 material = SubResource( 1 )
@@ -66,6 +148,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 

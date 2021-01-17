@@ -10,4 +10,4 @@ O (9 blocos) FEITO
 I (5 blocos) FEITO
 I (4 blocos)
 I (3 blocos)
-I (2 blocos)
+I (2 blocos) FEITO

@@ -13,7 +13,7 @@ func _ready():
 	for btn in buttons.get_children():
 		btn.connect("pressed", self, "load_level", [btn.name])
 		
-		if level_data[btn.name].unlocked == false:
+		if not level_data.keys().has(btn.name) or level_data[btn.name].unlocked == false:
 			btn.disabled = true
 		else:
 			btn.set_level_info(level_data[btn.name].items_got,

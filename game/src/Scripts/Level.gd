@@ -7,6 +7,18 @@ onready var table = $Table
 onready var end_level_screen = $UI/Control/EndLevelScreen
 onready var anim_player = $AnimationPlayer
 
+func _ready():
+	
+	$UI/Control/DioramaBubble.hide()
+	$UI/Control/EndLevelScreen.hide()
+	
+	for child in end_level_screen.get_node("ItemsGotten").get_children():
+		child.hide()
+	
+	$UI/Control/EndLevelScreen/PieceNum.hide()
+	$UI/Control/EndLevelScreen/Retry.hide()
+	$UI/Control/EndLevelScreen/Continue.hide()
+
 
 # Does a little reveal effect on the end screen, and also sets it up
 # TODO: add sfx
@@ -15,11 +27,12 @@ func set_up_end_level_screen(placed_pieces, total_pieces):
 	end_level_screen.get_node("CompleteText").show()
 	
 	# These timers just help control the flow of the display
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(1), "timeout")
 	
 	for piece_display in end_level_screen.get_node("ItemsGotten").get_children():
 		if placed_pieces.has(piece_display.name):
 			piece_display.visible = true
+			table.get_node("PiecePlace").play()
 		
 		yield(get_tree().create_timer(0.5), "timeout")
 	
@@ -43,6 +56,8 @@ func _on_Table_table_updated(level_completed):
 
 func _on_PackButton_pressed():
 	
+	$UI/Control/PackButtonClick.play()
+	
 	# None of that gamebreaking, double click bullshit
 	pack_button.disabled = true
 	
@@ -50,7 +65,7 @@ func _on_PackButton_pressed():
 	var placed_pieces = []
 	var total_pieces = 0
 	
-	for piece in table.get_children():
+	for piece in table.get_node("Pieces").get_children():
 		total_pieces += 1
 		if piece.placed:
 			placed_pieces.append(piece.name)
@@ -68,15 +83,21 @@ func _on_PackButton_pressed():
 	set_up_end_level_screen(placed_pieces, total_pieces)
 
 func restart_level():
+	$UI/Control/ButtonClick.play()
+	anim_player.play("TransitionOut")
+	yield(anim_player, "animation_finished")
+	yield(anim_player, "animation_finished")
 	get_tree().change_scene(LevelScenes.get_level_by_id(level_id))
 	print("Restarted level.")
 
 func _on_Level_Select_pressed():
+	$UI/Control/ButtonClick.play()
 	anim_player.play("TransitionOut")
 	yield(anim_player, "animation_finished")
 	get_tree().change_scene("res://src/Scenes/LevelSelect.tscn") # Is this safe? no. Does it work? yes
 
 func _on_Continue_pressed():
+	$UI/Control/ButtonClick.play()
 	anim_player.play("TransitionOut")
 	yield(anim_player, "animation_finished")
 	get_tree().change_scene("res://src/Scenes/LevelSelect.tscn")

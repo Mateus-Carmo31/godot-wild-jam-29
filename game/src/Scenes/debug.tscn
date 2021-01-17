@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://assets/Sprites/overlay.png" type="Texture" id=1]
 [ext_resource path="res://src/Scripts/Table.gd" type="Script" id=2]
@@ -17,6 +17,11 @@
 [ext_resource path="res://assets/Sprites/menu_interface.png" type="Texture" id=15]
 [ext_resource path="res://assets/Sprites/diorama.png" type="Texture" id=16]
 [ext_resource path="res://assets/Sprites/diorama_bubble.png" type="Texture" id=17]
+[ext_resource path="res://assets/Sounds/piece_fail.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/Sounds/piece_place.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/Sprites/end_level_screen_mockup.png" type="Texture" id=20]
+[ext_resource path="res://assets/Sounds/pack_button_click.wav" type="AudioStream" id=21]
+[ext_resource path="res://assets/Sounds/button_click.wav" type="AudioStream" id=22]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -66,7 +71,7 @@ font_data = ExtResource( 12 )
 font_data = ExtResource( 12 )
 
 [sub_resource type="DynamicFont" id=13]
-size = 40
+size = 48
 font_data = ExtResource( 12 )
 
 [sub_resource type="AtlasTexture" id=14]
@@ -295,20 +300,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EndLevelBG" type="ColorRect" parent="UI/Control/EndLevelScreen"]
+[node name="EndLevelBG" type="TextureRect" parent="UI/Control/EndLevelScreen"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-color = Color( 0.227451, 0.227451, 0.227451, 1 )
+texture = ExtResource( 20 )
+expand = true
 
 [node name="CompleteText" type="Label" parent="UI/Control/EndLevelScreen"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 172.806
-margin_top = 64.8775
+margin_top = 112.553
 margin_right = -179.194
-margin_bottom = -595.122
+margin_bottom = -547.446
 custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
 text = "And the travels continue..."
 align = 1
 valign = 1
@@ -318,9 +325,9 @@ __meta__ = {
 
 [node name="ItemsGotten" type="Control" parent="UI/Control/EndLevelScreen"]
 margin_left = 158.0
-margin_top = 168.615
+margin_top = 198.321
 margin_right = 1086.0
-margin_bottom = 480.615
+margin_bottom = 510.321
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -351,6 +358,7 @@ margin_right = 429.0
 margin_bottom = 74.0
 rect_min_size = Vector2( 300, 48 )
 custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
 text = "Test Text I humbly request that you ignore this
                      - Mateus"
 autowrap = true
@@ -382,6 +390,7 @@ margin_right = 429.0
 margin_bottom = 74.0
 rect_min_size = Vector2( 300, 48 )
 custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
 text = "Test Text I humbly request that you ignore this
                      - Mateus"
 autowrap = true
@@ -412,6 +421,7 @@ margin_right = 429.0
 margin_bottom = 74.0
 rect_min_size = Vector2( 300, 48 )
 custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
 text = "Test Text I humbly request that you ignore this
                      - Mateus"
 autowrap = true
@@ -444,6 +454,7 @@ margin_right = 429.0
 margin_bottom = 74.0
 rect_min_size = Vector2( 300, 48 )
 custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
 text = "Test Text I humbly request that you ignore this
                      - Mateus"
 autowrap = true
@@ -476,6 +487,7 @@ margin_right = 429.0
 margin_bottom = 74.0
 rect_min_size = Vector2( 300, 48 )
 custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
 text = "Test Text I humbly request that you ignore this
                      - Mateus"
 autowrap = true
@@ -510,19 +522,20 @@ margin_right = 429.0
 margin_bottom = 74.0
 rect_min_size = Vector2( 300, 48 )
 custom_fonts/font = SubResource( 12 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
 text = "Test Text I humbly request that you ignore this
                      - Mateus"
 autowrap = true
 
 [node name="PieceNum" type="Label" parent="UI/Control/EndLevelScreen"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 334.23
-margin_top = 522.777
+margin_top = 514.92
 margin_right = -381.77
-margin_bottom = -137.223
+margin_bottom = -145.08
 custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 0.243137, 0.0784314, 0.121569, 1 )
 text = "Pieces: x out of x"
 align = 1
 valign = 1
@@ -568,6 +581,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ButtonClick" type="AudioStreamPlayer" parent="UI/Control"]
+stream = ExtResource( 22 )
+volume_db = -15.0
+bus = "SFX"
+
+[node name="PackButtonClick" type="AudioStreamPlayer" parent="UI/Control"]
+stream = ExtResource( 21 )
+volume_db = -15.0
+bus = "SFX"
+
 [node name="BG" type="CanvasLayer" parent="."]
 layer = -1
 
@@ -596,7 +619,9 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Piece" type="Area2D" parent="Table"]
+[node name="Pieces" type="Node2D" parent="Table"]
+
+[node name="Piece" type="Area2D" parent="Table/Pieces"]
 position = Vector2( 63.1929, 4.08945 )
 monitoring = false
 monitorable = false
@@ -606,17 +631,17 @@ __meta__ = {
 }
 relative_spaces = [ Vector2( 1, 0 ), Vector2( 0, 1 ), Vector2( 1, 1 ) ]
 
-[node name="Sprite" type="Sprite" parent="Table/Piece"]
+[node name="Sprite" type="Sprite" parent="Table/Pieces/Piece"]
 texture = ExtResource( 3 )
 offset = Vector2( 4.5, 4.5 )
 region_rect = Rect2( 41, 31, 17, 17 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Piece"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Pieces/Piece"]
 visible = false
 position = Vector2( 4.42274, 4.42645 )
 shape = SubResource( 19 )
 
-[node name="Piece2" type="Area2D" parent="Table"]
+[node name="Piece2" type="Area2D" parent="Table/Pieces"]
 position = Vector2( 91.4023, 13.0538 )
 monitoring = false
 monitorable = false
@@ -627,17 +652,17 @@ __meta__ = {
 relative_spaces = [ Vector2( 0, -1 ), Vector2( 0, 1 ), Vector2( 0, 2 ) ]
 victory_requirement = true
 
-[node name="Sprite" type="Sprite" parent="Table/Piece2"]
+[node name="Sprite" type="Sprite" parent="Table/Pieces/Piece2"]
 texture = ExtResource( 8 )
 offset = Vector2( 0, 4.5 )
 region_rect = Rect2( 1, 1, 8, 35 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Piece2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Pieces/Piece2"]
 visible = false
 position = Vector2( 0, 4.38519 )
 shape = SubResource( 20 )
 
-[node name="Piece3" type="Area2D" parent="Table"]
+[node name="Piece3" type="Area2D" parent="Table/Pieces"]
 position = Vector2( 70.6128, 35.659 )
 monitoring = false
 monitorable = false
@@ -647,17 +672,17 @@ __meta__ = {
 }
 relative_spaces = [ Vector2( -1, 0 ), Vector2( 0, -1 ), Vector2( 1, 0 ) ]
 
-[node name="Sprite" type="Sprite" parent="Table/Piece3"]
+[node name="Sprite" type="Sprite" parent="Table/Pieces/Piece3"]
 texture = ExtResource( 9 )
 offset = Vector2( 0, -4.5 )
 region_rect = Rect2( 11, 1, 26, 17 )
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Table/Piece3"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Table/Pieces/Piece3"]
 visible = false
 position = Vector2( -0.0648956, -2.25196 )
 polygon = PoolVector2Array( -11, 5, 11, 5, 0, -10 )
 
-[node name="Piece4" type="Area2D" parent="Table"]
+[node name="Piece4" type="Area2D" parent="Table/Pieces"]
 position = Vector2( -35.7474, 5.09071 )
 monitoring = false
 monitorable = false
@@ -668,15 +693,15 @@ __meta__ = {
 relative_spaces = [ Vector2( -1, 0 ), Vector2( 1, 0 ) ]
 victory_requirement = true
 
-[node name="Sprite" type="Sprite" parent="Table/Piece4"]
+[node name="Sprite" type="Sprite" parent="Table/Pieces/Piece4"]
 texture = ExtResource( 6 )
 region_rect = Rect2( 11, 22, 26, 8 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Piece4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Table/Pieces/Piece4"]
 visible = false
 shape = SubResource( 21 )
 
-[node name="Piece5" type="Area2D" parent="Table"]
+[node name="Piece5" type="Area2D" parent="Table/Pieces"]
 position = Vector2( -44.8627, 23.3507 )
 monitoring = false
 monitorable = false
@@ -687,17 +712,17 @@ __meta__ = {
 relative_spaces = [ Vector2( 1, 0 ), Vector2( 1, -1 ), Vector2( 0, 1 ) ]
 victory_requirement = true
 
-[node name="Sprite" type="Sprite" parent="Table/Piece5"]
+[node name="Sprite" type="Sprite" parent="Table/Pieces/Piece5"]
 texture = ExtResource( 11 )
 offset = Vector2( 4.5, 0 )
 region_rect = Rect2( 39, 1, 17, 26 )
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Table/Piece5"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Table/Pieces/Piece5"]
 visible = false
 position = Vector2( 4.5, 0 )
 polygon = PoolVector2Array( -7, 12, -7, -3, 7, -12, 7, 3 )
 
-[node name="Piece6" type="Area2D" parent="Table"]
+[node name="Piece6" type="Area2D" parent="Table/Pieces"]
 position = Vector2( -26.4744, 40.8952 )
 monitoring = false
 monitorable = false
@@ -710,15 +735,25 @@ moveable = false
 starts_placed_at = Vector2( 3, 4 )
 victory_requirement = true
 
-[node name="Sprite" type="Sprite" parent="Table/Piece6"]
+[node name="Sprite" type="Sprite" parent="Table/Pieces/Piece6"]
 texture = ExtResource( 10 )
 offset = Vector2( -4.5, -4.5 )
 region_rect = Rect2( 1, 36, 35, 17 )
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Table/Piece6"]
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Table/Pieces/Piece6"]
 visible = false
 position = Vector2( -0.466232, 9.60139 )
 polygon = PoolVector2Array( 12.4051, -21.0413, 12.3426, -6.85378, -19.9074, -6.85378, -19.9074, -12.6663, -5.28238, -12.6663, -1.84488, -20.9788 )
+
+[node name="PiecePlace" type="AudioStreamPlayer" parent="Table"]
+stream = ExtResource( 19 )
+volume_db = 2.0
+bus = "SFX"
+
+[node name="PieceFail" type="AudioStreamPlayer" parent="Table"]
+stream = ExtResource( 18 )
+volume_db = -7.0
+bus = "SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "TransitionIn"
